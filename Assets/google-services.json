@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "588200670236",
+    "firebase_url": "https://y2s2-ip-spellscape-sandbox-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "y2s2-ip-spellscape-sandbox",
+    "storage_bucket": "y2s2-ip-spellscape-sandbox.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588200670236:android:892fcbaa51976ee43a5bd9",
+        "android_client_info": {
+          "package_name": "com.spellscape.sandbox"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqFtUjr5cogZlcKjNTQgVQlaeR3i7lHLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
