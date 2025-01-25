@@ -26,7 +26,14 @@ public class WordValidator : MonoBehaviour
     /// <summary>
     /// Flag to check whether word has been validated
     /// </summary>
-    private bool isValidated = false; // Flag to track validation state
+    private bool isValidated = false;
+
+    /// <summary>
+    /// References to particle system/audio source for feedback (correct/incorrect)
+    /// </summary>
+    public ParticleSystem confettiEffect;
+    public AudioSource successSound;
+    public AudioSource incorrectSound;
 
     /// <summary>
     /// Subscribes to the select and deselect events of all snap points
@@ -89,12 +96,42 @@ public class WordValidator : MonoBehaviour
         if (formedWord.Equals(correctWord, System.StringComparison.OrdinalIgnoreCase))
         {
             Debug.Log("Correct Word!");
-            // Trigger success feedback (e.g., confetti, sound)
+            TriggerSuccessEffects();
         }
         else
         {
             Debug.Log("Incorrect Word! Try Again.");
-            // Highlight incorrect letters or reset logic
+            TriggerIncorrectEffects();
+        }
+    }
+
+    /// <summary>
+    /// Triggers success feedback, including confetti and sound.
+    /// </summary>
+    private void TriggerSuccessEffects()
+    {
+        // Play confetti effect if assigned
+        if (confettiEffect != null)
+        {
+            confettiEffect.Play();
+        }
+
+        // Play success sound if assigned
+        if (successSound != null)
+        {
+            successSound.Play();
+        }
+    }
+
+    /// <summary>
+    /// Triggers feedback for incorrect word, including a sound.
+    /// </summary>
+    private void TriggerIncorrectEffects()
+    {
+        // Play incorrect sound if assigned
+        if (incorrectSound != null)
+        {
+            incorrectSound.Play();
         }
     }
 
