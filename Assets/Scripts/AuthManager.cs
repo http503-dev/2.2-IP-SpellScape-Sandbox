@@ -155,7 +155,7 @@ public class AuthManager : MonoBehaviour
 
                 Debug.Log("Welcome " + newUser.Email);
 
-                CreateNewUser(userId, emailUpField.text, 0, 0f, 0, 0);
+                CreateNewUser(userId, emailUpField.text, false, 0, 0f, 0, 0, 0f, "");
                 Debug.Log("new user created");
                 if (controller == null)
                 {
@@ -186,11 +186,15 @@ public class AuthManager : MonoBehaviour
         }
     }
 
-    private void CreateNewUser(string userId, string email, int uniqueWords, float fastestTimePerWord, int leastMistakes, int totalAttempts)
+    private void CreateNewUser(string userId, string email, bool adminStatus, int uniqueWords, float fastestTimePerWord, int leastMistakes, int totalAttempts, float totalHours, string profilePicURL)
     {
-        User user = new User(email, uniqueWords, fastestTimePerWord, leastMistakes, totalAttempts);
-        string json = JsonUtility.ToJson(user);
-        Debug.Log("Attempting to write to database...");
+        //User user = new User(email, uniqueWords, fastestTimePerWord, leastMistakes, totalAttempts, profilePicURL);
+        SandboxArea sandbox = new SandboxArea(uniqueWords);
+        ChallengeArea challenge = new ChallengeArea(fastestTimePerWord, leastMistakes, totalAttempts);
+        User user = new User(email, adminStatus, sandbox, challenge, totalHours, profilePicURL);
+
+        string json = JsonUtility.ToJson(user, true);
+        Debug.Log("Attempting to write to database..." + json);
         mDatabaseRef.Child("users").Child(userId).SetRawJsonValueAsync(json).ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted)
