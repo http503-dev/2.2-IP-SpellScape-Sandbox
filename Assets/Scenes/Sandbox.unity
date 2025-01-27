@@ -1490,7 +1490,6 @@ GameObject:
   - component: {fileID: 436358034}
   - component: {fileID: 436358033}
   - component: {fileID: 436358035}
-  - component: {fileID: 436358036}
   m_Layer: 0
   m_Name: Object Spawner
   m_TagString: Untagged
@@ -1588,18 +1587,6 @@ MonoBehaviour:
     m_ManualQueueValue: 0
     m_ManualQueueTargetFrame: 0
   m_BlockSpawnWhenInteractorHasSelection: 1
---- !u!114 &436358036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 436358032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 740c2fabb98191044b40a1ed1d488d44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &451820663
 GameObject:
   m_ObjectHideFlags: 0
@@ -5283,6 +5270,7 @@ MonoBehaviour:
   m_RepeatRate: 0.1
   m_TrackedDeviceDragThresholdMultiplier: 2
   m_TrackedScrollDeltaMultiplier: 5
+  m_BypassUIToolkitEvents: 0
   m_ActiveInputMode: 1
   m_EnableXRInput: 1
   m_EnableMouseInput: 1

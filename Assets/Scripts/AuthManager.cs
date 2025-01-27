@@ -155,7 +155,7 @@ public class AuthManager : MonoBehaviour
 
                 Debug.Log("Welcome " + newUser.Email);
 
-                CreateNewUser(userId, emailUpField.text, false, 0, 0f, 0, 0, 0f, "", "Easy");
+                CreateNewUser(userId, emailUpField.text, false, "Easy", 0, 0f, 0, 0, 0, "Easy", 0f, "");
                 Debug.Log("new user created");
                 if (controller == null)
                 {
@@ -186,12 +186,13 @@ public class AuthManager : MonoBehaviour
         }
     }
 
-    private void CreateNewUser(string userId, string email, bool adminStatus, int uniqueWords, float fastestTimePerWord, int leastMistakes, int totalAttempts, float totalHours, string profilePicURL, string difficultyLevel)
+    private void CreateNewUser(string userId, string email, bool adminStatus, string imageDifficultyLevel, int uniqueWords, float fastestTimePerWord, int leastMistakes, int totalAttempts, int totalWordsPerAttempt, string challengeDifficultyLevel, float totalHours, string profilePicURL)
     {
         //User user = new User(email, uniqueWords, fastestTimePerWord, leastMistakes, totalAttempts, profilePicURL);
+        ImageTracking imageTracking = new ImageTracking(imageDifficultyLevel);
         SandboxArea sandbox = new SandboxArea(uniqueWords);
-        ChallengeArea challenge = new ChallengeArea(fastestTimePerWord, leastMistakes, totalAttempts);
-        User user = new User(email, adminStatus, sandbox, challenge, totalHours, profilePicURL, difficultyLevel);
+        ChallengeArea challenge = new ChallengeArea(fastestTimePerWord, leastMistakes, totalAttempts, totalWordsPerAttempt, challengeDifficultyLevel);
+        User user = new User(email, adminStatus, imageTracking, sandbox, challenge, totalHours, profilePicURL);
 
         string json = JsonUtility.ToJson(user, true);
         Debug.Log("Attempting to write to database..." + json);
