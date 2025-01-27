@@ -7,8 +7,20 @@ public class Database : MonoBehaviour
 {
     DatabaseReference mDatabaseRef;
 
-    private void Start()
+    public static Database Instance { get; private set; }
+
+    private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         mDatabaseRef = FirebaseDatabase.DefaultInstance.RootReference;
     }
 }

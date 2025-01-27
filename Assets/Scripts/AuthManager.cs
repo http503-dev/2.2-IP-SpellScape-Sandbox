@@ -155,13 +155,13 @@ public class AuthManager : MonoBehaviour
 
                 Debug.Log("Welcome " + newUser.Email);
 
-                CreateNewUser(userId, emailUpField.text, false, 0, 0f, 0, 0, 0f, "");
+                CreateNewUser(userId, emailUpField.text, false, 0, 0f, 0, 0, 0f, "", "Easy");
                 Debug.Log("new user created");
                 if (controller == null)
                 {
                     Debug.Log("controller is null");
                 }
-                controller.StartGame();
+                controller.ToMainMenu();
                 Debug.Log("starting game");
             }
             else
@@ -186,12 +186,12 @@ public class AuthManager : MonoBehaviour
         }
     }
 
-    private void CreateNewUser(string userId, string email, bool adminStatus, int uniqueWords, float fastestTimePerWord, int leastMistakes, int totalAttempts, float totalHours, string profilePicURL)
+    private void CreateNewUser(string userId, string email, bool adminStatus, int uniqueWords, float fastestTimePerWord, int leastMistakes, int totalAttempts, float totalHours, string profilePicURL, string difficultyLevel)
     {
         //User user = new User(email, uniqueWords, fastestTimePerWord, leastMistakes, totalAttempts, profilePicURL);
         SandboxArea sandbox = new SandboxArea(uniqueWords);
         ChallengeArea challenge = new ChallengeArea(fastestTimePerWord, leastMistakes, totalAttempts);
-        User user = new User(email, adminStatus, sandbox, challenge, totalHours, profilePicURL);
+        User user = new User(email, adminStatus, sandbox, challenge, totalHours, profilePicURL, difficultyLevel);
 
         string json = JsonUtility.ToJson(user, true);
         Debug.Log("Attempting to write to database..." + json);
@@ -300,7 +300,7 @@ public class AuthManager : MonoBehaviour
                 FirebaseUser loggedInUser = task.Result.User;
                 userId = loggedInUser.UserId;
                 Debug.Log("Successfully logged in! Welcome back " + loggedInUser.Email);
-                controller.StartGame();
+                controller.ToMainMenu();
             }
         });
     }

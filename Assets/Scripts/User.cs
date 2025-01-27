@@ -42,12 +42,13 @@ public class User
     public ChallengeArea challengeArea;
     public float totalHours;
     public string profilePicURL;
+    public string difficultyLevel;
     public User()
     {
 
     }
 
-    public User(string email, bool adminStatus, SandboxArea sandboxArea, ChallengeArea challengeArea, float totalHours, string profilePicURL)
+    public User(string email, bool adminStatus, SandboxArea sandboxArea, ChallengeArea challengeArea, float totalHours, string profilePicURL, string difficultyLevel)
     {
         this.email = email;
         this.adminStatus = adminStatus;
@@ -55,5 +56,6 @@ public class User
         this.challengeArea = challengeArea;
         this.totalHours = totalHours;
         this.profilePicURL = profilePicURL;
+        this.difficultyLevel = difficultyLevel;
     }
 }
