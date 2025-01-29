@@ -54,6 +54,7 @@ public class WordDiscovery : MonoBehaviour
         {
             registeredSockets.Add(socket);
             socket.selectEntered.AddListener(OnBlockAttached);
+            socket.selectExited.AddListener(OnBlockDetached);
             Debug.Log($"Socket registered: {socket.name}");
         }
     }
@@ -67,6 +68,7 @@ public class WordDiscovery : MonoBehaviour
         if (registeredSockets.Contains(socket))
         {
             socket.selectEntered.RemoveListener(OnBlockAttached);
+            socket.selectExited.RemoveListener(OnBlockDetached);
             registeredSockets.Remove(socket);
             Debug.Log($"Socket unregistered: {socket.name}");
         }
@@ -108,6 +110,25 @@ public class WordDiscovery : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when a block is detached from any socket.
+    /// </summary>
+    /// <param name="args">The event arguments containing details of the interaction.</param>
+    private void OnBlockDetached(SelectExitEventArgs args)
+    {
+        var detachedBlock = args.interactableObject.transform.GetComponent<LetterBlock>();
+
+        if (detachedBlock != null)
+        {
+            // Clear the connectedToLeft field of the detached block
+            detachedBlock.connectedToLeft = null;
+            Debug.Log($"Block detached: {detachedBlock.letter}");
+        }
+        else
+        {
+            Debug.LogError("Detached object is not a LetterBlock!");
+        }
+    }
 
     /// <summary>
     /// Validates the word against the dictionary

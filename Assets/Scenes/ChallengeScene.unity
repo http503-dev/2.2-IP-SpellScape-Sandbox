@@ -1017,8 +1017,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wordPrefabs:
-  - {fileID: 1312944503820424187, guid: 57de624e975781345a1e280c513f99a3, type: 3}
-  - {fileID: 1312944503820424187, guid: fe77f0a4c92230d48bac46e73153deaf, type: 3}
+  - {fileID: 1312944503820424187, guid: 8b68e1377a0dd9946b160cf0dce3faa9, type: 3}
+  - {fileID: 1312944503820424187, guid: 7818d0a4867977549a5204a97ec4900e, type: 3}
   spawnPoint: {fileID: 2043835109}
 --- !u!4 &2042786314
 Transform:
