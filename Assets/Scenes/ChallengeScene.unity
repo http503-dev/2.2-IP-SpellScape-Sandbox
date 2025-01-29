@@ -627,7 +627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a4e6c4a10de5b44da1de588a3fcd7a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalTime: 30
+  totalTime: 60
   timerText: {fileID: 1462517146}
   gameOverPanel: {fileID: 565779361}
 --- !u!1001 &1025949560
@@ -910,7 +910,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0:30
+  m_text: 00:00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1016,10 +1016,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc0182d4d1f33f44a62a938b9e953fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordPrefabs:
-  - {fileID: 1312944503820424187, guid: 8b68e1377a0dd9946b160cf0dce3faa9, type: 3}
-  - {fileID: 1312944503820424187, guid: 7818d0a4867977549a5204a97ec4900e, type: 3}
   spawnPoint: {fileID: 2043835109}
+  easyWords:
+  - {fileID: 1312944503820424187, guid: 8b68e1377a0dd9946b160cf0dce3faa9, type: 3}
+  - {fileID: 1312944503820424187, guid: 7cbc1794cfb726d4099ea605410d24e0, type: 3}
+  - {fileID: 1312944503820424187, guid: a89c71719aec9cd4ca12cf94ca428a0d, type: 3}
+  - {fileID: 1312944503820424187, guid: 7a2b46c26dd9d9049973a194a79846bc, type: 3}
+  - {fileID: 1312944503820424187, guid: 2d4bd5d0e5596544dbbfad4e13f21ad0, type: 3}
+  - {fileID: 1312944503820424187, guid: 7818d0a4867977549a5204a97ec4900e, type: 3}
+  - {fileID: 1312944503820424187, guid: 2456cd0a7641f13418625ad8e790f2ae, type: 3}
+  - {fileID: 1312944503820424187, guid: 7e2e2c8099c51ef4681d93db63bc3c97, type: 3}
+  - {fileID: 1312944503820424187, guid: ba2d9fb8d67aca04f9dc278389bb07cf, type: 3}
+  - {fileID: 1312944503820424187, guid: acf5e751e0f346f49b7b8e0421002126, type: 3}
+  mediumWords:
+  - {fileID: 1312944503820424187, guid: 5dce42ee0211b6d409595e15cf99769f, type: 3}
+  - {fileID: 1312944503820424187, guid: 5f53d4322127f8e4aa9525725a15d9f7, type: 3}
+  - {fileID: 1312944503820424187, guid: 5df77b4650dd9d240b4b17b04c517e73, type: 3}
+  - {fileID: 1312944503820424187, guid: 0bb15e2c5ebf19647b832ad677f24fa8, type: 3}
+  - {fileID: 1312944503820424187, guid: 007045a42d5408b45a3d7a8164def6b8, type: 3}
+  - {fileID: 1312944503820424187, guid: b5aa0ebadbcd08e46a61ef65a0ff99b4, type: 3}
+  - {fileID: 1312944503820424187, guid: 81fadc018ff21c54688680c371d7fde6, type: 3}
+  - {fileID: 1312944503820424187, guid: 8172613fda9be444ea1d5afdc1caa141, type: 3}
+  - {fileID: 1312944503820424187, guid: d1ca81d99664961458c5ac90ff9853b2, type: 3}
+  - {fileID: 1312944503820424187, guid: e72ddcb3b09e858439da5d6bc86413c3, type: 3}
+  hardWords:
+  - {fileID: 1312944503820424187, guid: cd89590d027d2e54baf4159ebeae90fc, type: 3}
+  - {fileID: 1312944503820424187, guid: d9b0278f5c09c7d44a9342f9997c1a6b, type: 3}
+  - {fileID: 1312944503820424187, guid: bfd18d13717b8ec4582785e7a84d40da, type: 3}
+  - {fileID: 1312944503820424187, guid: c311c37be200cf14fbd92c278dd199f9, type: 3}
+  - {fileID: 1312944503820424187, guid: ee7f49858d8749c4ea7c2ab6439a87f7, type: 3}
+  - {fileID: 1312944503820424187, guid: 15797cdeb794aba42ae6e5ab26e1a8e9, type: 3}
+  - {fileID: 1312944503820424187, guid: 5b47fd6ab9dc6594a868bd6cddbb924b, type: 3}
+  - {fileID: 1312944503820424187, guid: 396b51d0c7a2096429e7230ad1eb4020, type: 3}
+  - {fileID: 1312944503820424187, guid: cce37573185b4be48af3884dadd2c3ba, type: 3}
+  - {fileID: 1312944503820424187, guid: 6b28e6e7ff2aaa043bfb5148a78138e0, type: 3}
 --- !u!4 &2042786314
 Transform:
   m_ObjectHideFlags: 0

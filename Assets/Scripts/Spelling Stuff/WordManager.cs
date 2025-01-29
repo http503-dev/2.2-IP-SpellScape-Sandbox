@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class WordManager : MonoBehaviour
 {
-    public List<GameObject> wordPrefabs; // Prefabs for different words
     public Transform spawnPoint; // Location to spawn the prefab
     private GameObject currentWord;
 
     private List<GameObject> unusedWords; // Tracks unused words
+
+    public List<GameObject> easyWords;
+    public List<GameObject> mediumWords;
+    public List<GameObject> hardWords;
+
+    private int wordsCompleted = 0;
+    private int difficultyLevel = 0; // 0 = Easy, 1 = Medium, 2 = Hard
+    private int wordsToLevelUp = 2; // Number of words needed to progress
 
     // Metrics
     private int totalWordsCompleted = 0;
@@ -17,7 +24,7 @@ public class WordManager : MonoBehaviour
 
     public void Start()
     {
-        unusedWords = new List<GameObject>(wordPrefabs);
+        SetDifficultyLevel(0); // Start at Easy
         SpawnRandomWord();
     }
 
@@ -30,23 +37,25 @@ public class WordManager : MonoBehaviour
 
         if (unusedWords.Count == 0)
         {
-            Debug.Log("All words have been used! Ending the challenge.");
-            LogFinalMetrics();
-            return;
+            Debug.Log("No words left at this difficulty, moving to the next level.");
+            IncreaseDifficulty();
         }
 
-        // Select a random word from the unused words list
+        if (unusedWords.Count == 0)
+        {
+            Debug.Log($"No words left at difficulty {difficultyLevel}, moving to next level.");
+            IncreaseDifficulty();
+            return; // Prevent attempting to spawn a new word when the list is empty
+        }
+
         int randomIndex = Random.Range(0, unusedWords.Count);
         currentWord = Instantiate(unusedWords[randomIndex], spawnPoint.position, Quaternion.identity);
-
-        // Remove the selected word from the unused list
         unusedWords.RemoveAt(randomIndex);
 
-        // Ensure the new word prefab's ChallengeValidator is linked to this WordManager
         var validator = currentWord.GetComponent<ChallengeValidator>();
         if (validator != null)
         {
-            validator.wordManager = this; // Set reference
+            validator.wordManager = this;
         }
 
         Debug.Log($"New word spawned: {currentWord.name}");
@@ -59,12 +68,56 @@ public class WordManager : MonoBehaviour
             totalWordsCompleted++;
             totalTimeTaken += timeTaken;
             totalMistakes += mistakes;
+            wordsCompleted++;
 
             Debug.Log($"Word Completed! Time Taken: {timeTaken:F2} seconds, Mistakes: {mistakes}");
+            if (wordsCompleted >= wordsToLevelUp)
+            {
+                IncreaseDifficulty();
+            }
         }
 
         // Spawn the next word after a short delay
         Invoke(nameof(SpawnRandomWord), 1f);
+    }
+
+    private void IncreaseDifficulty()
+    {
+        if (difficultyLevel == 0)
+        {
+            SetDifficultyLevel(1);
+        }
+        else if (difficultyLevel == 1)
+        {
+            SetDifficultyLevel(2);
+        }
+        else
+        {
+            Debug.Log("All difficulty levels completed!");
+            LogFinalMetrics();
+        }
+    }
+
+    private void SetDifficultyLevel(int level)
+    {
+        difficultyLevel = level;
+        wordsCompleted = 0;
+
+        if (difficultyLevel == 0)
+        {
+            unusedWords = new List<GameObject>(easyWords);
+            Debug.Log("Difficulty set to EASY");
+        }
+        else if (difficultyLevel == 1)
+        {
+            unusedWords = new List<GameObject>(mediumWords);
+            Debug.Log("Difficulty set to MEDIUM");
+        }
+        else if (difficultyLevel == 2)
+        {
+            unusedWords = new List<GameObject>(hardWords);
+            Debug.Log("Difficulty set to HARD");
+        }
     }
 
     public void LogFinalMetrics()
