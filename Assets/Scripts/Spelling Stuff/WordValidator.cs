@@ -35,11 +35,28 @@ public class WordValidator : MonoBehaviour
     public AudioSource successSound;
     public AudioSource incorrectSound;
 
+    public int difficultyLevel; // 0 = Easy, 1 = Medium, 2 = Hard
+    public ImageTrackingManager imageTrackingManager; // Reference to the manager
+
     /// <summary>
     /// Subscribes to the select and deselect events of all snap points
     /// </summary>
     private void Start()
     {
+        // Ensure imageTrackingManager is assigned dynamically if missing
+        if (imageTrackingManager == null)
+        {
+            imageTrackingManager = FindObjectOfType<ImageTrackingManager>();
+        }
+
+        // If difficulty is not unlocked, disable the prefab
+        if (imageTrackingManager != null && !imageTrackingManager.CanSpawnPrefab(difficultyLevel))
+        {
+            Debug.Log($"Word '{correctWord}' is locked! Waiting for difficulty unlock.");
+            gameObject.SetActive(false);
+            imageTrackingManager.RegisterLockedWord(this); // Register the locked word!
+        }
+
         // Subscribe to socket events for all snap points
         foreach (var socket in snapPoints)
         {
@@ -97,6 +114,12 @@ public class WordValidator : MonoBehaviour
         {
             Debug.Log("Correct Word!");
             TriggerSuccessEffects();
+
+            // Notify the manager to update progress
+            if (imageTrackingManager != null)
+            {
+                imageTrackingManager.OnWordCompleted();
+            }
         }
         else
         {
@@ -142,5 +165,10 @@ public class WordValidator : MonoBehaviour
     {
         // Reset the validation flag to allow re-validation (e.g., after resetting the game)
         isValidated = false;
+    }
+
+    public void ActivateWord()
+    {
+        gameObject.SetActive(true);
     }
 }

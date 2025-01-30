@@ -59,7 +59,7 @@ public class User
 {
     public string email;
     public bool adminStatus;
-    public ImageTracking ImageTracking;
+    public ImageTracking imageTracking;
     public SandboxArea sandboxArea;
     public ChallengeArea challengeArea;
     public float totalHours;
@@ -73,7 +73,7 @@ public class User
     {
         this.email = email;
         this.adminStatus = adminStatus;
-        this.ImageTracking = imageTracking; 
+        this.imageTracking = imageTracking; 
         this.sandboxArea = sandboxArea;
         this.challengeArea = challengeArea;
         this.totalHours = totalHours;
