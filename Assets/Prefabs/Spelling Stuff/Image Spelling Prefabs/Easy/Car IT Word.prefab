@@ -329,6 +329,7 @@ MonoBehaviour:
   confettiEffect: {fileID: 46921226904279516}
   successSound: {fileID: 5959773214239753515}
   incorrectSound: {fileID: 6740223778915914415}
+  difficultyLevel: 0
   imageTrackingManager: {fileID: 0}
 --- !u!1 &2020308408169578573
 GameObject:
@@ -602,7 +603,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 4f1db9260364c9c4b9fe2e16e9c62ee0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
