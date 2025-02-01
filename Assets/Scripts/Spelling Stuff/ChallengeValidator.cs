@@ -28,6 +28,11 @@ public class ChallengeValidator : MonoBehaviour
     private bool isValidated = false;
 
     /// <summary>
+    /// The difficulty level of the word (0 = Easy, 1 = Medium, 2 = Hard)
+    /// </summary>
+    public int wordDifficulty;
+
+    /// <summary>
     /// Metrics to be sent to the database (Individual for current word)
     /// </summary>
     public int totalAttempts = 0;
@@ -55,6 +60,7 @@ public class ChallengeValidator : MonoBehaviour
     /// Reference to the WordManager
     /// </summary>
     public WordManager wordManager;
+
 
     /// <summary>
     /// Adds event listeners for snap points.

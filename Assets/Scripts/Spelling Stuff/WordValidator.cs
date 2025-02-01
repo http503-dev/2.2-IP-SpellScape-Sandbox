@@ -35,8 +35,15 @@ public class WordValidator : MonoBehaviour
     public AudioSource successSound;
     public AudioSource incorrectSound;
 
-    public int difficultyLevel; // 0 = Easy, 1 = Medium, 2 = Hard
-    public ImageTrackingManager imageTrackingManager; // Reference to the manager
+    /// <summary>
+    /// The difficulty level of the word (0 = Easy, 1 = Medium, 2 = Hard)
+    /// </summary>
+    public int difficultyLevel;
+
+    /// <summary>
+    /// Reference to image tracking manager
+    /// </summary>
+    public ImageTrackingManager imageTrackingManager;
 
     /// <summary>
     /// Subscribes to the select and deselect events of all snap points
@@ -118,7 +125,7 @@ public class WordValidator : MonoBehaviour
             // Notify the manager to update progress
             if (imageTrackingManager != null)
             {
-                imageTrackingManager.OnWordCompleted();
+                imageTrackingManager.OnWordCompleted(difficultyLevel);
             }
         }
         else
@@ -167,6 +174,9 @@ public class WordValidator : MonoBehaviour
         isValidated = false;
     }
 
+    /// <summary>
+    /// Function to show locked words
+    /// </summary>
     public void ActivateWord()
     {
         gameObject.SetActive(true);

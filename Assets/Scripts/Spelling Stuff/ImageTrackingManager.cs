@@ -5,6 +5,8 @@
  */
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class ImageTrackingManager : MonoBehaviour
@@ -30,16 +32,40 @@ public class ImageTrackingManager : MonoBehaviour
     private List<WordValidator> lockedWords = new List<WordValidator>();
 
     /// <summary>
+    /// UI Elements for Progress Tracking
+    /// </summary>
+    public Slider progressBar;
+    public TextMeshProUGUI progressText;
+
+    /// <summary>
+    /// Initializes the UI Progress Bar at Start
+    /// </summary>
+    private void Start()
+    {
+        UpdateProgressBar(); // Initialize UI on start
+    }
+
+    /// <summary>
     /// Function for when a word is completed. Increases the word completion count and checks for difficulty unlocking.
     /// </summary>
-    public void OnWordCompleted()
+    public void OnWordCompleted(int wordDifficulty)
     {
-        wordsCompleted++;
-        Debug.Log($"Words Completed: {wordsCompleted}/3 at Difficulty Level {difficultyLevel}");
-
-        if (wordsCompleted >= wordsNeededToUnlock)
+        if (wordDifficulty == difficultyLevel)
         {
-            IncreaseDifficulty();
+            wordsCompleted++;
+            Debug.Log($"Words Completed: {wordsCompleted}/3 at Difficulty Level {difficultyLevel}");
+
+            UpdateProgressBar();
+
+            if (wordsCompleted >= wordsNeededToUnlock)
+            {
+                IncreaseDifficulty();
+            }
+        }
+
+        else
+        {
+            Debug.Log($"Word from lower difficulty ({wordDifficulty}) completed, but does NOT count towards leveling up.");
         }
     }
 
@@ -64,6 +90,8 @@ public class ImageTrackingManager : MonoBehaviour
                     lockedWords.Remove(word);
                 }
             }
+
+            UpdateProgressBar(); // Reset progress bar when difficulty increases
         }
         else
         {
@@ -90,6 +118,24 @@ public class ImageTrackingManager : MonoBehaviour
         if (!lockedWords.Contains(word))
         {
             lockedWords.Add(word);
+        }
+    }
+
+    /// <summary>
+    /// Updates the progress bar to show the player's progress towards the next difficulty
+    /// </summary>
+    private void UpdateProgressBar()
+    {
+        float progress = (float)wordsCompleted / wordsNeededToUnlock;
+
+        if (progressBar != null)
+        {
+            progressBar.value = progress; // Update the slider
+        }
+
+        if (progressText != null)
+        {
+            progressText.text = $"{wordsCompleted}/{wordsNeededToUnlock} words completed";
         }
     }
 }

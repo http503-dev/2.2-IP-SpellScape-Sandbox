@@ -6,6 +6,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using System.Linq;
 
 public class WordManager : MonoBehaviour
 {
@@ -18,11 +21,6 @@ public class WordManager : MonoBehaviour
     /// Current word game object
     /// </summary>
     private GameObject currentWord;
-
-    /// <summary>
-    /// List of words that have not yet been used
-    /// </summary>
-    private List<GameObject> unusedWords;
 
     /// <summary>
     /// Lists of words categorized by difficulty
@@ -54,12 +52,19 @@ public class WordManager : MonoBehaviour
     private int totalMistakes = 0;
 
     /// <summary>
+    /// References to UI elements
+    /// </summary>
+    public Slider progressBar;
+    public TextMeshProUGUI progressText;
+
+    /// <summary>
     /// Initializes the game by setting the difficulty level to Easy and spawns a word
     /// </summary>
     public void Start()
     {
         SetDifficultyLevel(0); // Start at Easy
         SpawnRandomWord();
+        UpdateProgressBar(); // Initialize UI
     }
 
     /// <summary>
@@ -72,22 +77,67 @@ public class WordManager : MonoBehaviour
             Destroy(currentWord); // Remove the previous word
         }
 
-        if (unusedWords.Count == 0)
-        {
-            Debug.Log("No words left at this difficulty, moving to the next level.");
-            IncreaseDifficulty();
-        }
+        List<GameObject> currentWordList = GetWordListForDifficulty();
 
-        if (unusedWords.Count == 0)
+        if (currentWordList.Count == 0)
         {
             Debug.Log($"No words left at difficulty {difficultyLevel}, moving to next level.");
             IncreaseDifficulty();
             return; // Prevent attempting to spawn a new word when the list is empty
         }
 
-        int randomIndex = Random.Range(0, unusedWords.Count);
-        currentWord = Instantiate(unusedWords[randomIndex], spawnPoint.position, Quaternion.identity);
-        unusedWords.RemoveAt(randomIndex);
+        GameObject selectedWord;
+        float randomValue = Random.value; // Random number between 0 and 1
+
+        if (difficultyLevel == 1) // Medium difficulty
+        {
+            if (randomValue < 0.8f && mediumWords.Count > 0) // 80% chance for medium words
+            {
+                selectedWord = mediumWords[Random.Range(0, mediumWords.Count)];
+                mediumWords.Remove(selectedWord);
+            }
+            else if (easyWords.Count > 0) // 20% chance for easy words
+            {
+                selectedWord = easyWords[Random.Range(0, easyWords.Count)];
+                easyWords.Remove(selectedWord);
+            }
+            else
+            {
+                Debug.LogWarning("No words available in lower difficulties.");
+                selectedWord = mediumWords[Random.Range(0, mediumWords.Count)];
+            }
+        }
+        else if (difficultyLevel == 2) // Hard difficulty
+        {
+            if (randomValue < 0.7f && hardWords.Count > 0) // 70% chance for hard words
+            {
+                selectedWord = hardWords[Random.Range(0, hardWords.Count)];
+                hardWords.Remove(selectedWord);
+            }
+            else if (randomValue < 0.9f && mediumWords.Count > 0) // 20% chance for medium words
+            {
+                selectedWord = mediumWords[Random.Range(0, mediumWords.Count)];
+                mediumWords.Remove(selectedWord);
+            }
+            else if (easyWords.Count > 0) // 10% chance for easy words
+            {
+                selectedWord = easyWords[Random.Range(0, easyWords.Count)];
+                easyWords.Remove(selectedWord);
+            }
+            else
+            {
+                Debug.LogWarning("No words available in lower difficulties.");
+                selectedWord = hardWords[Random.Range(0, hardWords.Count)];
+            }
+        }
+        else // Easy difficulty
+        {
+            selectedWord = easyWords[Random.Range(0, easyWords.Count)];
+            easyWords.Remove(selectedWord);
+        }
+
+        // Instantiate the selected word prefab
+        currentWord = Instantiate(selectedWord, spawnPoint.position, Quaternion.identity);
 
         var validator = currentWord.GetComponent<ChallengeValidator>();
         if (validator != null)
@@ -111,9 +161,26 @@ public class WordManager : MonoBehaviour
             totalWordsCompleted++;
             totalTimeTaken += timeTaken;
             totalMistakes += mistakes;
-            wordsCompleted++;
+
+            // Access wordDifficulty from the current word's ChallengeValidator
+            var validator = currentWord.GetComponent<ChallengeValidator>();
+            if (validator != null)
+            {
+                // Check if the word's difficulty matches the current difficulty level
+                if (validator.wordDifficulty == difficultyLevel)
+                {
+                    wordsCompleted++; // Only count words that match the current difficulty
+                    UpdateProgressBar(); // Update progress bar on word completion
+                }
+                else
+                {
+                    Debug.Log($"Word completed was not of the current difficulty ({difficultyLevel}), so it doesn't count towards progress.");
+                }
+            }
 
             Debug.Log($"Word Completed! Time Taken: {timeTaken:F2} seconds, Mistakes: {mistakes}");
+
+
             if (wordsCompleted >= wordsToLevelUp)
             {
                 IncreaseDifficulty();
@@ -142,6 +209,8 @@ public class WordManager : MonoBehaviour
             Debug.Log("All difficulty levels completed!");
             LogFinalMetrics();
         }
+
+        UpdateProgressBar(); // Reset progress bar on difficulty increase
     }
 
     /// <summary>
@@ -155,18 +224,57 @@ public class WordManager : MonoBehaviour
 
         if (difficultyLevel == 0)
         {
-            unusedWords = new List<GameObject>(easyWords);
-            Debug.Log("Difficulty set to EASY");
+            Debug.Log("Difficulty set to EASY" + level);
         }
         else if (difficultyLevel == 1)
         {
-            unusedWords = new List<GameObject>(mediumWords);
-            Debug.Log("Difficulty set to MEDIUM");
+            Debug.Log("Difficulty set to MEDIUM" + level);
         }
         else if (difficultyLevel == 2)
         {
-            unusedWords = new List<GameObject>(hardWords);
-            Debug.Log("Difficulty set to HARD");
+            Debug.Log("Difficulty set to HARD" + level);
+        }
+
+        UpdateProgressBar(); // Reset progress bar when difficulty changes
+    }
+
+    /// <summary>
+    /// Gets the word list corresponding to the current difficulty
+    /// </summary>
+    private List<GameObject> GetWordListForDifficulty()
+    {
+        if (difficultyLevel == 0)
+        {
+            return easyWords;
+        }
+        else if (difficultyLevel == 1)
+        {
+            return mediumWords;
+        }
+        else if (difficultyLevel == 2)
+        {
+            return hardWords;
+        }
+        else
+        {
+            return new List<GameObject>(); // Empty list for invalid levels
+        }
+    }
+
+    /// <summary>
+    /// Function to update progress bar (words needed to increase difficulty level)
+    /// </summary>
+    public void UpdateProgressBar()
+    {
+        float progress = (float)wordsCompleted / wordsToLevelUp;
+        if (progressBar != null)
+        {
+            progressBar.value = progress;
+        }
+
+        if (progressText != null)
+        {
+            progressText.text = $"{wordsCompleted}/{wordsToLevelUp} words completed";
         }
     }
 

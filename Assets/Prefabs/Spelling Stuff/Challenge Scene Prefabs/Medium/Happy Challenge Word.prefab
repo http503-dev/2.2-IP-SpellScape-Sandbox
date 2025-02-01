@@ -331,6 +331,7 @@ MonoBehaviour:
   - {fileID: 929912413632373415}
   - {fileID: 4540246852710360999}
   - {fileID: 607293441506752716}
+  wordDifficulty: 1
   totalAttempts: 0
   mistakes: 0
   fastestTime: Infinity
