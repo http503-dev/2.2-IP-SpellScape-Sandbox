@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.ARFoundation;
 
 public class Controller : MonoBehaviour
 {
@@ -70,17 +71,28 @@ public class Controller : MonoBehaviour
 
     public void ToImage()
     {
-        SceneManager.LoadScene("ImageSpelling");
+        LoaderUtility.Deinitialize();
+        LoaderUtility.Initialize();
+        SceneManager.LoadScene("ImageSpelling", LoadSceneMode.Single);
     }
 
     public void ToChallenge()
     {
-        SceneManager.LoadScene("Challenge");
+        LoaderUtility.Deinitialize();
+        LoaderUtility.Initialize();
+        SceneManager.LoadScene("Challenge", LoadSceneMode.Single);
     }
 
     public void ToSandbox()
     {
-        SceneManager.LoadScene("Sandbox");
+        LoaderUtility.Deinitialize();
+        LoaderUtility.Initialize();
+        SceneManager.LoadScene("Sandbox", LoadSceneMode.Single);
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
     public void ExitGame()
