@@ -8,6 +8,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit;
+using Firebase;
+using Firebase.Auth;
+using Firebase.Database;
+using Firebase.Extensions;
 
 public class WordDiscovery : MonoBehaviour
 {
@@ -17,10 +21,48 @@ public class WordDiscovery : MonoBehaviour
     private List<XRSocketInteractor> registeredSockets = new List<XRSocketInteractor>();
 
     /// <summary>
-    /// Automatically registers any existing sockets in the scene
+    /// A HashSet to track unique words discovered
+    /// </summary>
+    private HashSet<string> uniqueWords = new HashSet<string>();
+
+    /// <summary>
+    /// Firebase Database and Authentication References
+    /// </summary>
+    private DatabaseReference database;
+    private FirebaseAuth auth;
+    private string userId;
+
+    /// <summary>
+    /// Automatically registers any existing sockets in the scene and initializes Firebase
     /// </summary>
     private void OnEnable()
     {
+        // Initialize Firebase
+        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.Result == DependencyStatus.Available)
+            {
+                auth = FirebaseAuth.DefaultInstance;
+                database = FirebaseDatabase.DefaultInstance.RootReference;
+
+                if (auth.CurrentUser != null)
+                {
+                    userId = auth.CurrentUser.UserId;
+                    Debug.Log("Firebase Connected - User ID: " + userId);
+
+                    // Retrieve unique words from Firebase
+                    LoadUniqueWordsFromFirebase();
+                }
+                else
+                {
+                    Debug.LogError("No user logged in!");
+                }
+            }
+            else
+            {
+                Debug.LogError("Could not connect to Firebase: " + task.Result);
+            }
+        });
         // Register any sockets already in the scene
         foreach (var socket in FindObjectsOfType<XRSocketInteractor>())
         {
@@ -138,10 +180,88 @@ public class WordDiscovery : MonoBehaviour
         if (WordDictionaryLoader.Instance.IsValidWord(word))
         {
             Debug.Log($"Valid word formed: {word}");
+
+            // Add word to uniqueWords and update Firebase
+            if (uniqueWords.Add(word))
+            {
+                Debug.Log($"Unique word discovered: {word}");
+                UpdateUniqueWordsInFirebase();
+            }
         }
         else
         {
             Debug.Log($"Invalid word: {word}");
         }
+    }
+
+    /// <summary>
+    /// Retrieves the list of unique words from Firebase and populates the HashSet
+    /// </summary>
+    private void LoadUniqueWordsFromFirebase()
+    {
+        database.Child("users").Child(userId).Child("sandboxArea").Child("uniqueWordsList").GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                Debug.LogError($"Failed to load unique words from Firebase: {task.Exception}");
+                return;
+            }
+
+            if (task.Result.Exists)
+            {
+                foreach (var word in task.Result.Children)
+                {
+                    uniqueWords.Add(word.Value.ToString());
+                }
+
+                Debug.Log($"Loaded {uniqueWords.Count} unique words from Firebase.");
+            }
+            else
+            {
+                Debug.Log("No unique words found in Firebase.");
+            }
+        });
+    }
+
+    /// <summary>
+    /// Updates the number of unique words discovered in Firebase and stores the full list
+    /// </summary>
+    private void UpdateUniqueWordsInFirebase()
+    {
+        if (string.IsNullOrEmpty(userId))
+        {
+            Debug.LogError("No valid user ID found. Cannot update unique words.");
+            return;
+        }
+
+        int uniqueWordCount = uniqueWords.Count;
+
+        // Prepare list of unique words to store in Firebase
+        Dictionary<string, object> wordsDictionary = new Dictionary<string, object>();
+        int index = 0;
+        foreach (string word in uniqueWords)
+        {
+            wordsDictionary[index.ToString()] = word;
+            index++;
+        }
+
+        // Update uniqueWords count and word list in Firebase
+        var sandboxUpdates = new Dictionary<string, object>
+    {
+        { "uniqueWords", uniqueWordCount },
+        { "uniqueWordsList", wordsDictionary }
+    };
+
+        database.Child("users").Child(userId).Child("sandboxArea").UpdateChildrenAsync(sandboxUpdates).ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompleted)
+            {
+                Debug.Log($"Unique word count and list updated in Firebase: {uniqueWordCount}");
+            }
+            else
+            {
+                Debug.LogError($"Failed to update unique words: {task.Exception}");
+            }
+        });
     }
 }

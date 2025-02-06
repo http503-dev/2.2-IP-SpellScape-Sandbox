@@ -32,6 +32,11 @@ public class ChallengeTimer : MonoBehaviour
     public GameObject gameOverPanel;
 
     /// <summary>
+    /// Reference to the WordManager to log Firebase updates
+    /// </summary>
+    private WordManager wordManager;
+
+    /// <summary>
     /// Bool indicating whether the timer is running
     /// </summary>
     private bool isRunning = true;
@@ -44,6 +49,13 @@ public class ChallengeTimer : MonoBehaviour
         currentTime = totalTime;
         UpdateTimerDisplay();
         gameOverPanel.SetActive(false);
+
+        // Find WordManager in the scene
+        wordManager = FindObjectOfType<WordManager>();
+        if (wordManager == null)
+        {
+            Debug.LogError("WordManager not found! Firebase updates will not trigger.");
+        }
     }
 
     /// <summary>
@@ -84,5 +96,15 @@ public class ChallengeTimer : MonoBehaviour
         timerText.text = "00:00";
         gameOverPanel.SetActive(true); // Show Game Over UI
         Debug.Log("Time's up! Challenge over.");
+
+        // Trigger Firebase update when time runs out
+        if (wordManager != null)
+        {
+            wordManager.LogFinalMetrics();
+        }
+        else
+        {
+            Debug.LogError("Firebase update failed: WordManager reference missing.");
+        }
     }
 }

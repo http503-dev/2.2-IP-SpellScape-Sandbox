@@ -71,22 +71,28 @@ public class Controller : MonoBehaviour
 
     public void ToImage()
     {
+        Debug.Log("Deinitialize/Initialize");
         LoaderUtility.Deinitialize();
         LoaderUtility.Initialize();
+        Debug.Log("Loading ImageSpelling scene...");
         SceneManager.LoadScene("ImageSpelling", LoadSceneMode.Single);
     }
 
     public void ToChallenge()
     {
+        Debug.Log("Deinitialize/Initialize");
         LoaderUtility.Deinitialize();
         LoaderUtility.Initialize();
+        Debug.Log("Loading Challenge scene...");
         SceneManager.LoadScene("Challenge", LoadSceneMode.Single);
     }
 
     public void ToSandbox()
     {
+        Debug.Log("Deinitialize/Initialize");
         LoaderUtility.Deinitialize();
         LoaderUtility.Initialize();
+        Debug.Log("Loading Sandbox scene...");
         SceneManager.LoadScene("Sandbox", LoadSceneMode.Single);
     }
 

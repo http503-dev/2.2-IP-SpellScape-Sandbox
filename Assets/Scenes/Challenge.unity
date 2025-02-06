@@ -853,7 +853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a4e6c4a10de5b44da1de588a3fcd7a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalTime: 60
+  totalTime: 30
   timerText: {fileID: 1462517146}
   gameOverPanel: {fileID: 565779361}
 --- !u!1001 &1025949560
