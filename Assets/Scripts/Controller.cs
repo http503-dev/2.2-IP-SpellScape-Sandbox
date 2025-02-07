@@ -7,47 +7,19 @@ using UnityEngine.XR.ARFoundation;
 
 public class Controller : MonoBehaviour
 {
-    public Database database;
-
     public GameObject signUpCanvas;
     public GameObject signInCanvas;
     public GameObject mainMenu;
 
-    public static Controller Instance { get; private set; }
-
-    private void Awake()
+    private void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
-        Database database = FindObjectOfType<Database>();
-
         if (signUpCanvas.gameObject.activeSelf)
         {
-            Time.timeScale = 0;
             signUpCanvas.gameObject.SetActive(true);
             signInCanvas.gameObject.SetActive(false);
             mainMenu.gameObject.SetActive(false);
         }
     }
-
-    /*public void StartGame()
-    {
-        Debug.Log("starting game");
-        Time.timeScale = 1;
-        signUpCanvas.gameObject.SetActive(false);
-        signInCanvas.gameObject.SetActive(false);
-        mainMenu.gameObject.SetActive(false);
-        Debug.Log("started game");
-    }*/
-
     public void ToSignIn()
     {
         signUpCanvas.gameObject.SetActive(false);
