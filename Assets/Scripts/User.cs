@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using JetBrains.Annotations;
 
 [Serializable]
@@ -21,16 +20,14 @@ public class ImageTracking
 public class SandboxArea
 {
     public int uniqueWords;
-    public List<string> uniqueWordsList;
     public SandboxArea()
     {
 
     }
 
-    public SandboxArea(int uniqueWords, List<string> uniqueWordsList)
+    public SandboxArea(int uniqueWords)
     {
         this.uniqueWords = uniqueWords;
-        this.uniqueWordsList = uniqueWordsList ?? new List<string>();
     }
 }
 

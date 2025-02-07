@@ -9,10 +9,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
-using Firebase;
-using Firebase.Database;
-using Firebase.Extensions;
-using Firebase.Auth;
 
 public class WordManager : MonoBehaviour
 {
@@ -52,12 +48,8 @@ public class WordManager : MonoBehaviour
     /// Metrics to be stored to database (Overall for that run)
     /// </summary>
     private int totalWordsCompleted = 0;
-    private float fastestTime = Mathf.Infinity;
-    private int leastMistakes = int.MaxValue;
-    private int totalAttempts = 0;
     private float totalTimeTaken = 0f;
     private int totalMistakes = 0;
-    private float sessionStartTime;
 
     /// <summary>
     /// References to UI elements
@@ -66,48 +58,13 @@ public class WordManager : MonoBehaviour
     public TextMeshProUGUI progressText;
 
     /// <summary>
-    /// Firebase Database & Authentication References
-    /// </summary>
-    private DatabaseReference database;
-    private FirebaseAuth auth;
-    private string userId;
-
-    /// <summary>
-    /// Initializes the game by setting the difficulty level to Easy and spawns a word as well as Firebase
+    /// Initializes the game by setting the difficulty level to Easy and spawns a word
     /// </summary>
     public void Start()
     {
         SetDifficultyLevel(0); // Start at Easy
         SpawnRandomWord();
         UpdateProgressBar(); // Initialize UI
-
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
-        {
-            if (task.Result == DependencyStatus.Available)
-            {
-                auth = FirebaseAuth.DefaultInstance;
-                database = FirebaseDatabase.DefaultInstance.RootReference;
-
-                if (auth.CurrentUser != null)
-                {
-                    userId = auth.CurrentUser.UserId;
-                    Debug.Log("Firebase Connected - User ID: " + userId);
-
-                    // Increment totalAttempts and update Firebase
-                    IncrementTotalAttempts();
-                }
-                else
-                {
-                    Debug.LogError("No user logged in!");
-                }
-            }
-            else
-            {
-                Debug.LogError("Could not connect to Firebase: " + task.Result);
-            }
-        });
-
-        sessionStartTime = Time.time; // Record session start time
     }
 
     /// <summary>
@@ -250,6 +207,7 @@ public class WordManager : MonoBehaviour
         else
         {
             Debug.Log("All difficulty levels completed!");
+            LogFinalMetrics();
         }
 
         UpdateProgressBar(); // Reset progress bar on difficulty increase
@@ -321,131 +279,10 @@ public class WordManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Converts difficulty level to a string representation
-    /// </summary>
-    private string GetDifficultyName(int level)
-    {
-        return level switch
-        {
-            0 => "Easy",
-            1 => "Medium",
-            2 => "Hard",
-            _ => "Unknown"
-        };
-    }
-
-    /// <summary>
-    /// Function to increment total attempts
-    /// </summary>
-    private void IncrementTotalAttempts()
-    {
-        if (string.IsNullOrEmpty(userId))
-        {
-            Debug.LogError("No valid user ID found");
-            return;
-        }
-
-        // Get the current value of totalAttempts from Firebase
-        database.Child("users").Child(userId).Child("challengeArea").Child("totalAttempts").GetValueAsync().ContinueWithOnMainThread(task =>
-        {
-            if (task.IsFaulted || task.IsCanceled)
-            {
-                Debug.LogError("Failed to retrieve totalAttempts: " + task.Exception);
-                return;
-            }
-
-            int currentAttempts = 0;
-            if (task.Result.Exists && int.TryParse(task.Result.Value.ToString(), out currentAttempts))
-            {
-                Debug.Log($"Current totalAttempts: {currentAttempts}");
-            }
-
-            // Increment the totalAttempts
-            int updatedAttempts = currentAttempts + 1;
-
-            // Update Firebase with the incremented value
-            database.Child("users").Child(userId).Child("challengeArea").Child("totalAttempts").SetValueAsync(updatedAttempts).ContinueWithOnMainThread(updateTask =>
-            {
-                if (updateTask.IsCompleted)
-                {
-                    Debug.Log($"totalAttempts successfully incremented to {updatedAttempts} in Firebase!");
-                }
-                else
-                {
-                    Debug.LogError("Failed to increment totalAttempts: " + updateTask.Exception);
-                }
-            });
-        });
-    }
-
-    /// <summary>
     /// Logs the final game metrics when all difficulty levels are completed.
     /// </summary>
     public void LogFinalMetrics()
     {
-        if (string.IsNullOrEmpty(userId))
-        {
-            Debug.LogError("No valid user ID found");
-            return;
-        }
-
-        float totalSessionTime = Time.time - sessionStartTime;
-
-        // Prepare the challengeArea stats
-        Dictionary<string, object> challengeStats = new Dictionary<string, object>
-    {
-        { "fastest_time", fastestTime },
-        { "least_mistakes", leastMistakes },
-        { "total_attempts", totalAttempts },
-        { "total_words_completed", totalWordsCompleted },
-        { "challenge_difficulty", GetDifficultyName(difficultyLevel) }
-    };
-
-        // Retrieve the current value of totalHours
-        database.Child("users").Child(userId).Child("totalHours").GetValueAsync().ContinueWithOnMainThread(task =>
-        {
-            if (task.IsFaulted || task.IsCanceled)
-            {
-                Debug.LogError("Failed to retrieve total hours: " + task.Exception);
-                return;
-            }
-
-            float existingHours = 0f;
-            if (task.Result.Exists && float.TryParse(task.Result.Value.ToString(), out existingHours))
-            {
-                Debug.Log($"Current total hours: {existingHours}");
-            }
-
-            // Add the session time to the existing hours
-            float updatedTotalHours = existingHours + (totalSessionTime / 3600f); // Convert seconds to hours
-
-            // Update totalHours field separately
-            database.Child("users").Child(userId).Child("totalHours").SetValueAsync(updatedTotalHours).ContinueWithOnMainThread(updateTask =>
-            {
-                if (updateTask.IsCompleted)
-                {
-                    Debug.Log("Total hours successfully updated in Firebase!");
-                }
-                else
-                {
-                    Debug.LogError("Failed to update total hours: " + updateTask.Exception);
-                }
-            });
-        });
-
-        // Update challengeArea field separately
-        database.Child("users").Child(userId).Child("challengeArea").UpdateChildrenAsync(challengeStats).ContinueWithOnMainThread(updateTask =>
-        {
-            if (updateTask.IsCompleted)
-            {
-                Debug.Log("Challenge stats successfully uploaded to Firebase!");
-            }
-            else
-            {
-                Debug.LogError("Failed to upload challenge stats: " + updateTask.Exception);
-            }
-        });
-
-        Debug.Log($"Challenge Complete! Fastest Time: {fastestTime:F2}s, Least Mistakes: {leastMistakes}, Total Attempts: {totalAttempts}, Words Completed: {totalWordsCompleted}");
+        Debug.Log($"Challenge Complete! Total Words: {totalWordsCompleted}, Total Time: {totalTimeTaken:F2} seconds, Total Mistakes: {totalMistakes}");
     }
 }

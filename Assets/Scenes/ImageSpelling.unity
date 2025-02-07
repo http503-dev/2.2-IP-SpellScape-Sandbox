@@ -879,8 +879,7 @@ MonoBehaviour:
   m_SerializedLibrary: {fileID: 11400000, guid: 8bec1328d44d1451185a6c1291ffc6e1,
     type: 2}
   m_MaxNumberOfMovingImages: 2
-  m_TrackedImagePrefab: {fileID: 1312944503820424187, guid: 63a7d056269810f4a9ff57edc1389750,
-    type: 3}
+  m_TrackedImagePrefab: {fileID: 0}
 --- !u!1 &1141130331
 GameObject:
   m_ObjectHideFlags: 0
@@ -1267,7 +1266,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dad7a6c85c15304ebca9fa7eba784e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordsNeededToUnlock: 1
   progressBar: {fileID: 915371440}
   progressText: {fileID: 628354299}
 --- !u!4 &2044083157

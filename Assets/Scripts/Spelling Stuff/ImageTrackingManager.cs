@@ -8,10 +8,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
-using Firebase;
-using Firebase.Auth;
-using Firebase.Database;
-using Firebase.Extensions;
 
 public class ImageTrackingManager : MonoBehaviour
 {
@@ -28,7 +24,7 @@ public class ImageTrackingManager : MonoBehaviour
     /// <summary>
     /// Number of words needed to unlock the next difficulty
     /// </summary>
-    public int wordsNeededToUnlock = 3;
+    private int wordsNeededToUnlock = 3;
 
     /// <summary>
     /// List of words that are locked due to higher difficulty requirements
@@ -42,42 +38,11 @@ public class ImageTrackingManager : MonoBehaviour
     public TextMeshProUGUI progressText;
 
     /// <summary>
-    /// Firebase Database and Auth References
-    /// </summary>
-    private DatabaseReference database;
-    private FirebaseAuth auth;
-    private string userId;
-
-    /// <summary>
-    /// Initializes the UI Progress Bar at Start and Firebase
+    /// Initializes the UI Progress Bar at Start
     /// </summary>
     private void Start()
     {
         UpdateProgressBar(); // Initialize UI on start
-
-        // Initialize Firebase
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
-        {
-            if (task.Result == DependencyStatus.Available)
-            {
-                auth = FirebaseAuth.DefaultInstance;
-                database = FirebaseDatabase.DefaultInstance.RootReference;
-
-                if (auth.CurrentUser != null)
-                {
-                    userId = auth.CurrentUser.UserId;
-                    Debug.Log("Firebase Connected - User ID: " + userId);
-                }
-                else
-                {
-                    Debug.LogError("No user logged in!");
-                }
-            }
-            else
-            {
-                Debug.LogError("Could not connect to Firebase: " + task.Result);
-            }
-        });
     }
 
     /// <summary>
@@ -115,9 +80,6 @@ public class ImageTrackingManager : MonoBehaviour
             wordsCompleted = 0; // Reset count for next level
 
             Debug.Log($"Unlocked difficulty: {difficultyLevel}");
-
-            // Push updated difficulty level to Firebase
-            UpdateDifficultyInFirebase();
 
             // Reactivate locked words that match the new difficulty
             foreach (var word in new List<WordValidator>(lockedWords))
@@ -175,45 +137,5 @@ public class ImageTrackingManager : MonoBehaviour
         {
             progressText.text = $"{wordsCompleted}/{wordsNeededToUnlock} words completed";
         }
-    }
-
-    /// <summary>
-    /// Pushes the current difficulty level to Firebase
-    /// </summary>
-    private void UpdateDifficultyInFirebase()
-    {
-        if (string.IsNullOrEmpty(userId))
-        {
-            Debug.LogError("No valid user ID found. Cannot update difficulty.");
-            return;
-        }
-
-        string difficultyName = GetDifficultyName(difficultyLevel);
-
-        database.Child("users").Child(userId).Child("imageTracking").Child("imageDifficultyLevel").SetValueAsync(difficultyName).ContinueWithOnMainThread(task =>
-        {
-            if (task.IsCompleted)
-            {
-                Debug.Log($"Image Difficulty Level updated in Firebase: {difficultyName}");
-            }
-            else
-            {
-                Debug.LogError($"Failed to update difficulty level: {task.Exception}");
-            }
-        });
-    }
-
-    /// <summary>
-    /// Converts difficulty level to a string representation
-    /// </summary>
-    private string GetDifficultyName(int level)
-    {
-        return level switch
-        {
-            0 => "easy",
-            1 => "medium",
-            2 => "hard",
-            _ => "unknown"
-        };
     }
 }
