@@ -57,13 +57,14 @@ public class WordManager : MonoBehaviour
     private int totalAttempts = 0;
     private float totalTimeTaken = 0f;
     private int totalMistakes = 0;
-    private float sessionStartTime;
 
     /// <summary>
     /// References to UI elements
     /// </summary>
     public Slider progressBar;
     public TextMeshProUGUI progressText;
+    public GameObject startPanel;
+    public ChallengeTimer challengeTimer;
 
     /// <summary>
     /// Firebase Database & Authentication References
@@ -77,9 +78,14 @@ public class WordManager : MonoBehaviour
     /// </summary>
     public void Start()
     {
-        SetDifficultyLevel(0); // Start at Easy
-        SpawnRandomWord();
-        UpdateProgressBar(); // Initialize UI
+        // Ensure the Start Panel is active at the beginning
+        startPanel.SetActive(true);
+
+        // Pause the game timer until the challenge starts
+        if (challengeTimer != null)
+        {
+            challengeTimer.enabled = false;
+        }
 
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
         {
@@ -106,8 +112,22 @@ public class WordManager : MonoBehaviour
                 Debug.LogError("Could not connect to Firebase: " + task.Result);
             }
         });
+    }
 
-        sessionStartTime = Time.time; // Record session start time
+    public void StartChallenge()
+    {
+        startPanel.SetActive(false); // Hide the Start Panel
+        SetDifficultyLevel(0); // Start at Easy
+        SpawnRandomWord();
+        UpdateProgressBar(); // Initialize UI
+
+        // Start the timer
+        if (challengeTimer != null)
+        {
+            challengeTimer.enabled = true;
+        }
+
+        Debug.Log("Challenge started!");
     }
 
     /// <summary>
@@ -204,6 +224,17 @@ public class WordManager : MonoBehaviour
             totalWordsCompleted++;
             totalTimeTaken += timeTaken;
             totalMistakes += mistakes;
+
+            // Update session-level stats
+            if (timeTaken < fastestTime)
+            {
+                fastestTime = timeTaken;
+            }
+
+            if (mistakes < leastMistakes)
+            {
+                leastMistakes = mistakes;
+            }
 
             // Access wordDifficulty from the current word's ChallengeValidator
             var validator = currentWord.GetComponent<ChallengeValidator>();
@@ -389,51 +420,22 @@ public class WordManager : MonoBehaviour
             return;
         }
 
-        float totalSessionTime = Time.time - sessionStartTime;
+        // Calculate required metrics
+        float fastestTimePerWord = fastestTime; 
+        int leastMistakesOverall = leastMistakes; 
+        int totalWordsPerAttempt = totalWordsCompleted;
+        string challengeDifficultyLevel = GetDifficultyName(difficultyLevel);
 
-        // Prepare the challengeArea stats
+        // Prepare challenge stats
         Dictionary<string, object> challengeStats = new Dictionary<string, object>
     {
-        { "fastest_time", fastestTime },
-        { "least_mistakes", leastMistakes },
-        { "total_attempts", totalAttempts },
-        { "total_words_completed", totalWordsCompleted },
-        { "challenge_difficulty", GetDifficultyName(difficultyLevel) }
+        { "fastestTimePerWord", fastestTimePerWord },
+        { "leastMistakes", leastMistakesOverall },
+        { "totalWordsPerAttempt", totalWordsPerAttempt },
+        { "challengeDifficultyLevel", challengeDifficultyLevel }
     };
 
-        // Retrieve the current value of totalHours
-        database.Child("users").Child(userId).Child("totalHours").GetValueAsync().ContinueWithOnMainThread(task =>
-        {
-            if (task.IsFaulted || task.IsCanceled)
-            {
-                Debug.LogError("Failed to retrieve total hours: " + task.Exception);
-                return;
-            }
-
-            float existingHours = 0f;
-            if (task.Result.Exists && float.TryParse(task.Result.Value.ToString(), out existingHours))
-            {
-                Debug.Log($"Current total hours: {existingHours}");
-            }
-
-            // Add the session time to the existing hours
-            float updatedTotalHours = existingHours + (totalSessionTime / 3600f); // Convert seconds to hours
-
-            // Update totalHours field separately
-            database.Child("users").Child(userId).Child("totalHours").SetValueAsync(updatedTotalHours).ContinueWithOnMainThread(updateTask =>
-            {
-                if (updateTask.IsCompleted)
-                {
-                    Debug.Log("Total hours successfully updated in Firebase!");
-                }
-                else
-                {
-                    Debug.LogError("Failed to update total hours: " + updateTask.Exception);
-                }
-            });
-        });
-
-        // Update challengeArea field separately
+        // Log metrics to Firebase under Challenge Area
         database.Child("users").Child(userId).Child("challengeArea").UpdateChildrenAsync(challengeStats).ContinueWithOnMainThread(updateTask =>
         {
             if (updateTask.IsCompleted)
@@ -446,6 +448,6 @@ public class WordManager : MonoBehaviour
             }
         });
 
-        Debug.Log($"Challenge Complete! Fastest Time: {fastestTime:F2}s, Least Mistakes: {leastMistakes}, Total Attempts: {totalAttempts}, Words Completed: {totalWordsCompleted}");
+        Debug.Log($"Challenge Complete! Fastest Time Per Word: {fastestTimePerWord:F2}s, Least Mistakes: {leastMistakesOverall}, Total Attempts: {totalAttempts}, Total Words Per Attempt: {totalWordsPerAttempt}, Difficulty Level: {challengeDifficultyLevel}");
     }
 }

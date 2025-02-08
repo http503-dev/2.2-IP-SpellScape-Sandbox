@@ -210,9 +210,9 @@ public class ImageTrackingManager : MonoBehaviour
     {
         return level switch
         {
-            0 => "easy",
-            1 => "medium",
-            2 => "hard",
+            0 => "Easy",
+            1 => "Medium",
+            2 => "Hard",
             _ => "unknown"
         };
     }

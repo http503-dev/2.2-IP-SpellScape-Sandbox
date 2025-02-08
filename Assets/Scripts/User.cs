@@ -61,25 +61,25 @@ public class ChallengeArea
 public class User
 {
     public string email;
+    public string username;
     public bool adminStatus;
     public ImageTracking imageTracking;
     public SandboxArea sandboxArea;
     public ChallengeArea challengeArea;
-    public float totalHours;
     public string profilePicURL;
     public User()
     {
 
     }
 
-    public User(string email, bool adminStatus, ImageTracking imageTracking, SandboxArea sandboxArea, ChallengeArea challengeArea, float totalHours, string profilePicURL)
+    public User(string email, string username, bool adminStatus, ImageTracking imageTracking, SandboxArea sandboxArea, ChallengeArea challengeArea, string profilePicURL)
     {
         this.email = email;
+        this.username = username;
         this.adminStatus = adminStatus;
         this.imageTracking = imageTracking; 
         this.sandboxArea = sandboxArea;
         this.challengeArea = challengeArea;
-        this.totalHours = totalHours;
         this.profilePicURL = profilePicURL;
     }
 }
