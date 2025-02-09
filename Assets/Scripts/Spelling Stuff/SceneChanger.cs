@@ -12,6 +12,37 @@ using UnityEngine.XR.ARFoundation;
 public class SceneChanger : MonoBehaviour
 {
     /// <summary>
+    /// Reference to menu panel
+    /// </summary>
+    public GameObject menuPanel;
+
+    /// <summary>
+    /// Called on start to hide menu panel
+    /// </summary>
+    public void Start()
+    {
+        menuPanel.SetActive(false);
+    }
+
+    /// <summary>
+    /// Fucntion to hide menu panel and continue the game
+    /// </summary>
+    public void HideMenuPanel()
+    {
+        Time.timeScale = 1.0f;
+        gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Function to show menu panel and pause the game
+    /// </summary>
+    public void ShowMenuPanel()
+    {
+        Time.timeScale = 0;
+        gameObject.SetActive(true);
+    }
+
+    /// <summary>
     /// Function to load into Image Tracking scene
     /// </summary>
     public void ToImage()

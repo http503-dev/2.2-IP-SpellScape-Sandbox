@@ -347,7 +347,7 @@ public class WordManager : MonoBehaviour
 
         if (progressText != null)
         {
-            progressText.text = $"{wordsCompleted}/{wordsToLevelUp} words completed";
+            progressText.text = $"{wordsCompleted}/{wordsToLevelUp} words completed\nto unlock next difficulty";
         }
     }
 

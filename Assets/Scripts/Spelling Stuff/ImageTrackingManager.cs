@@ -40,6 +40,7 @@ public class ImageTrackingManager : MonoBehaviour
     /// </summary>
     public Slider progressBar;
     public TextMeshProUGUI progressText;
+    public TextMeshProUGUI warningText;
 
     /// <summary>
     /// Firebase Database and Auth References
@@ -101,7 +102,18 @@ public class ImageTrackingManager : MonoBehaviour
         else
         {
             Debug.Log($"Word from lower difficulty ({wordDifficulty}) completed, but does NOT count towards leveling up.");
+            warningText.text = "Word from lower difficulty completed and does NOT count towards leveling up.";
+            StartCoroutine(HideWarningTextAfterDelay(5f)); // Hide after 3 seconds
         }
+    }
+
+    private IEnumerator HideWarningTextAfterDelay(float delay)
+    {
+        // Wait for the specified delay
+        yield return new WaitForSeconds(delay);
+
+        // Clear the warning text
+        warningText.text = string.Empty;
     }
 
     /// <summary>
@@ -173,7 +185,7 @@ public class ImageTrackingManager : MonoBehaviour
 
         if (progressText != null)
         {
-            progressText.text = $"{wordsCompleted}/{wordsNeededToUnlock} words completed";
+            progressText.text = $"{wordsCompleted}/{wordsNeededToUnlock} words completed\nto unlock next difficulty";
         }
     }
 

@@ -12,6 +12,7 @@ using Firebase;
 using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Extensions;
+using TMPro;
 
 public class WordDiscovery : MonoBehaviour
 {
@@ -31,6 +32,11 @@ public class WordDiscovery : MonoBehaviour
     private DatabaseReference database;
     private FirebaseAuth auth;
     private string userId;
+
+    /// <summary>
+    /// References to UI elements
+    /// </summary>
+    public TextMeshProUGUI formedText;
 
     /// <summary>
     /// Automatically registers any existing sockets in the scene and initializes Firebase
@@ -180,17 +186,20 @@ public class WordDiscovery : MonoBehaviour
         if (WordDictionaryLoader.Instance.IsValidWord(word))
         {
             Debug.Log($"Valid word formed: {word}");
+            formedText.text = $"Valid word formed: \n {word}\nbut is not unique";
 
             // Add word to uniqueWords and update Firebase
             if (uniqueWords.Add(word))
             {
                 Debug.Log($"Unique word discovered: {word}");
+                formedText.text = $"Unique word discovered: \n {word}";
                 UpdateUniqueWordsInFirebase();
             }
         }
         else
         {
             Debug.Log($"Invalid word: {word}");
+            formedText.text = $"Invalid word: \n {word}";
         }
     }
 
