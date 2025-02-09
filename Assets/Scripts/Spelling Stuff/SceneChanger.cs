@@ -1,41 +1,19 @@
+/*
+ * Author: Muhammad Farhan
+ * Date: 22/1/2024
+ * Description: Script that handles changing of scenes while in game
+ */
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.ARFoundation;
 
-public class Controller : MonoBehaviour
+public class SceneChanger : MonoBehaviour
 {
-    public GameObject signUpCanvas;
-    public GameObject signInCanvas;
-    public GameObject mainMenu;
-
-    private void Start()
-    {
-        ToSignIn();
-    }
-    public void ToSignIn()
-    {
-        signUpCanvas.gameObject.SetActive(false);
-        signInCanvas.gameObject.SetActive(true);
-        mainMenu.gameObject.SetActive(false);
-    }
-
-    public void ToSignUp()
-    {
-        signUpCanvas.gameObject.SetActive(true);
-        signInCanvas.gameObject.SetActive(false);
-        mainMenu.gameObject.SetActive(false);
-    }
-
-    public void ToMainMenu()
-    {
-        signUpCanvas.gameObject.SetActive(false);
-        signInCanvas.gameObject.SetActive(false);
-        mainMenu.gameObject.SetActive(true);
-    }
-
+    /// <summary>
+    /// Function to load into Image Tracking scene
+    /// </summary>
     public void ToImage()
     {
         Debug.Log("Deinitialize/Initialize");
@@ -45,6 +23,9 @@ public class Controller : MonoBehaviour
         SceneManager.LoadScene("ImageSpelling", LoadSceneMode.Single);
     }
 
+    /// <summary>
+    /// Function to load into Challenge scene
+    /// </summary>
     public void ToChallenge()
     {
         Debug.Log("Deinitialize/Initialize");
@@ -54,6 +35,9 @@ public class Controller : MonoBehaviour
         SceneManager.LoadScene("Challenge", LoadSceneMode.Single);
     }
 
+    /// <summary>
+    /// Function to load into Sandbox scene
+    /// </summary>
     public void ToSandbox()
     {
         Debug.Log("Deinitialize/Initialize");
@@ -63,6 +47,9 @@ public class Controller : MonoBehaviour
         SceneManager.LoadScene("Sandbox", LoadSceneMode.Single);
     }
 
+    /// <summary>
+    /// Function to quit out of the game
+    /// </summary>
     public void ExitGame()
     {
         Application.Quit();
