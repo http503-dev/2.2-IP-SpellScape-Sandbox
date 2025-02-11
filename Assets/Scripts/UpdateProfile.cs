@@ -16,6 +16,8 @@ public class UpdateProfile : MonoBehaviour
     public WebCam webCam;
     public TMP_InputField username;
 
+    public TextMeshProUGUI warningText;
+
     public TextMeshProUGUI profileUsername;
     public TextMeshProUGUI profileEmail;
     //public Image profilePicture;
@@ -65,6 +67,23 @@ public class UpdateProfile : MonoBehaviour
     public void ReadAndUpdate()
     {
         string userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+
+        // Check if username is entered
+        if (string.IsNullOrEmpty(username.text))
+        {
+            warningText.text = "Username is required!";
+            Debug.LogError("Username is required!");
+            return;
+        }
+
+        // Check if profile picture is set
+        if (string.IsNullOrEmpty(webCam.profilePicURL))
+        {
+            warningText.text = "Profile picture is required!";
+            Debug.LogError("Profile picture is required!");
+            return;
+        }
+
 
         mDatabaseRef.Child("users").Child(userId).GetValueAsync().ContinueWithOnMainThread(task =>
         {

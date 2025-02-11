@@ -47,6 +47,7 @@ public class SceneChanger : MonoBehaviour
     /// </summary>
     public void ToImage()
     {
+        Time.timeScale = 1.0f;
         Debug.Log("Deinitialize/Initialize");
         LoaderUtility.Deinitialize();
         LoaderUtility.Initialize();
@@ -59,6 +60,7 @@ public class SceneChanger : MonoBehaviour
     /// </summary>
     public void ToChallenge()
     {
+        Time.timeScale = 1.0f;
         Debug.Log("Deinitialize/Initialize");
         LoaderUtility.Deinitialize();
         LoaderUtility.Initialize();
@@ -71,6 +73,7 @@ public class SceneChanger : MonoBehaviour
     /// </summary>
     public void ToSandbox()
     {
+        Time.timeScale = 1.0f;
         Debug.Log("Deinitialize/Initialize");
         LoaderUtility.Deinitialize();
         LoaderUtility.Initialize();

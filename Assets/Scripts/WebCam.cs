@@ -14,6 +14,7 @@ public class WebCam : MonoBehaviour
 
     //public Renderer targetRenderer; // The renderer of the 3D object to apply the webcam feed
     public RawImage targetImage;
+    public RenderTexture renderTexture;
     private WebCamTexture webcamTexture;
 
     private string screenshotsFolder = "/C:/Program Files/Unity/Hub/Editor/2022.3.24f1/Editor/WebCamScreenShots";
@@ -24,7 +25,6 @@ public class WebCam : MonoBehaviour
     private const string UploadFolder = "screenshots";
     public string profilePicURL;
 
-    //private async void Start()
     public async void StartWebCam()
     {
         if (WebCamTexture.devices.Length == 0)
@@ -33,45 +33,60 @@ public class WebCam : MonoBehaviour
             return;
         }
 
-        // Select the default webcam (or you can select by index)
-        WebCamDevice webcamDevice = WebCamTexture.devices[0];
-        Debug.Log($"Using webcam: {webcamDevice.name}");
+        WebCamDevice[] devices = WebCamTexture.devices;
+        string selectedCameraName = ""; // Store selected webcam name
 
-        // Initialize the webcam texture
-        webcamTexture = new WebCamTexture(webcamDevice.name, 640, 480, 30);
+        // Try to find a front-facing camera
+        foreach (var device in devices)
+        {
+            if (device.isFrontFacing)
+            {
+                selectedCameraName = device.name;
+                break; // Use the first front-facing camera found
+            }
+        }
 
-        RectTransform rt = targetImage.GetComponent<RectTransform>();
-        rt.sizeDelta = new Vector2(300, 300);
+        // If no front camera found, use the first available camera
+        if (string.IsNullOrEmpty(selectedCameraName) && devices.Length > 0)
+        {
+            selectedCameraName = devices[0].name;
+        }
 
-        await Task.Delay(100);
+        // Ensure a valid camera is selected
+        if (string.IsNullOrEmpty(selectedCameraName))
+        {
+            Debug.LogError("No available camera found!");
+            return;
+        }
 
-        // Apply the webcam texture to the material of the target object
+        // Initialize WebCamTexture with the selected camera
+        webcamTexture = new WebCamTexture(selectedCameraName, renderTexture.width, renderTexture.height);
+        webcamTexture.Play();
+        Debug.Log($"Using webcam: {selectedCameraName}");
+
+        // If a UI RawImage is used, assign it (Optional)
         if (targetImage != null)
         {
-            webcamTexture.Play();
-            //targetRenderer.material.mainTexture = webcamTexture;
-            targetImage.texture = webcamTexture;
-            targetImage.rectTransform.sizeDelta = new Vector2(webcamTexture.width, webcamTexture.height);
-            //targetImage.material.mainTextureScale = new Vector2(1, -1); // Flip horizontally
-            targetImage.uvRect = new Rect(0, 0, 1, -1); // Flip texture properly
-            Debug.Log($"Webcam Texture Applied: {webcamTexture.width}x{webcamTexture.height}");
-        }
-        else
-        {
-            Debug.LogError("Target renderer is not assigned!");
+            targetImage.texture = renderTexture;
         }
 
-        // Start the webcam feed
-        //webcamTexture.Play();
+        Debug.Log($"Webcam feed applied to Render Texture: {renderTexture.width}x{renderTexture.height}");
 
-        //Set up screenshots folder
-        //this folder changes depending on OS platform (Win/Mac/iOS/Android) 
-        //<where_your_Unity_app_resides>/WebcamScreenshots/
+        // Set up screenshots folder
         screenshotsFolder = Path.Combine(Application.persistentDataPath, WebCamScreenShotsFolder);
         if (!Directory.Exists(screenshotsFolder))
         {
             Directory.CreateDirectory(screenshotsFolder);
             Debug.Log($"Created folder: {screenshotsFolder}");
+        }
+    }
+
+    // Update the RenderTexture every frame to keep the webcam feed LIVE!
+    private void Update()
+    {
+        if (webcamTexture != null && webcamTexture.isPlaying)
+        {
+            Graphics.Blit(webcamTexture, renderTexture);
         }
     }
 
@@ -106,19 +121,21 @@ public class WebCam : MonoBehaviour
 
         try
         {
-            // Create a Texture2D to capture the current frame
-            Texture2D webcamFrame = new Texture2D(webcamTexture.width, webcamTexture.height, TextureFormat.RGB24, false);
-            webcamFrame.SetPixels(webcamTexture.GetPixels());
-            webcamFrame.Apply();
+            // Capture current frame from WebCamTexture
+            RenderTexture.active = renderTexture;
+            Texture2D frameTexture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
+            frameTexture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+            frameTexture.Apply();
 
-            // Save the Texture2D as a PNG file
-            byte[] imageData = webcamFrame.EncodeToPNG();
+            // Save as PNG
+            byte[] imageData = frameTexture.EncodeToPNG();
             await File.WriteAllBytesAsync(filePath, imageData);
 
             Debug.Log($"Webcam frame captured and saved to: {filePath}");
 
-            // Clean up memory
-            Destroy(webcamFrame);
+            // Cleanup
+            RenderTexture.active = null;
+            Destroy(frameTexture);
         }
         catch (Exception ex)
         {
