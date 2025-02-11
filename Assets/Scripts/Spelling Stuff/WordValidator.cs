@@ -32,6 +32,7 @@ public class WordValidator : MonoBehaviour
     /// References to particle system/audio source for feedback (correct/incorrect)
     /// </summary>
     public ParticleSystem confettiEffect;
+    public ParticleSystem failEffect;
     public AudioSource successSound;
     public AudioSource incorrectSound;
 
@@ -158,6 +159,12 @@ public class WordValidator : MonoBehaviour
     /// </summary>
     private void TriggerIncorrectEffects()
     {
+        // Play fail effect if assigned
+        if (failEffect != null)
+        {
+            failEffect.Play();
+        }
+
         // Play incorrect sound if assigned
         if (incorrectSound != null)
         {

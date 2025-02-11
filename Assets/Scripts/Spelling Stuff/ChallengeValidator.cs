@@ -53,6 +53,7 @@ public class ChallengeValidator : MonoBehaviour
     /// References to particle system/audio source for feedback (correct/incorrect)
     /// </summary>
     public ParticleSystem confettiEffect;
+    public ParticleSystem failEffect;
     public AudioSource successSound;
     public AudioSource incorrectSound;
 
@@ -160,6 +161,8 @@ public class ChallengeValidator : MonoBehaviour
     /// </summary>
     private void TriggerIncorrectEffects()
     {
+        // Play fail effect if assigned
+        if (failEffect != null) failEffect.Play();
         if (incorrectSound != null) incorrectSound.Play();
     }
 }
