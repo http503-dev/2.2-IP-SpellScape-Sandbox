@@ -161,7 +161,7 @@ public class AuthManager : MonoBehaviour
                 {
                     Debug.Log("controller is null");
                 }
-                controller.ToMainMenu();
+                controller.ToCreateProfile();
                 Debug.Log("starting game");
             }
             else

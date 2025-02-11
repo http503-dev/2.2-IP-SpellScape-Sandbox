@@ -10,6 +10,11 @@ public class Controller : MonoBehaviour
     public GameObject signUpCanvas;
     public GameObject signInCanvas;
     public GameObject mainMenu;
+    public GameObject createProfile;
+    public GameObject profilePage;
+    public UpdateProfile updateProfile;
+
+    public WebCam webCam;
 
     private void Start()
     {
@@ -20,6 +25,8 @@ public class Controller : MonoBehaviour
         signUpCanvas.gameObject.SetActive(false);
         signInCanvas.gameObject.SetActive(true);
         mainMenu.gameObject.SetActive(false);
+        createProfile.gameObject.SetActive(false);
+        profilePage.gameObject.SetActive(false);
     }
 
     public void ToSignUp()
@@ -27,6 +34,16 @@ public class Controller : MonoBehaviour
         signUpCanvas.gameObject.SetActive(true);
         signInCanvas.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(false);
+        createProfile.gameObject.SetActive(false);
+    }
+
+    public void ToCreateProfile()
+    {
+        signUpCanvas.gameObject.SetActive(false);
+        createProfile.gameObject.SetActive(true);
+        Debug.Log("starting webcam");
+        webCam.StartWebCam();
+        Debug.Log("webcam started");
     }
 
     public void ToMainMenu()
@@ -34,6 +51,17 @@ public class Controller : MonoBehaviour
         signUpCanvas.gameObject.SetActive(false);
         signInCanvas.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(true);
+        createProfile.gameObject.SetActive(false);
+        profilePage.gameObject .SetActive(false);
+        webCam.StopWebCam();
+    }
+
+    public void ToProfile()
+    {
+        updateProfile.Read();
+        createProfile.gameObject.SetActive(false);
+        mainMenu.gameObject.SetActive(false);
+        profilePage.gameObject.SetActive(true);
     }
 
     public void ToImage()
