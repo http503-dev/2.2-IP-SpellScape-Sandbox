@@ -6371,7 +6371,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Profile picture is required!
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a22f411a157d86b41b752490f815bb1b, type: 2}
   m_sharedMaterial: {fileID: 6520036584139204529, guid: a22f411a157d86b41b752490f815bb1b,
