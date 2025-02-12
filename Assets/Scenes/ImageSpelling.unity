@@ -1716,6 +1716,12 @@ MonoBehaviour:
   - imageGuid: 297caa36-ddb8-406a-9009-f0ab39e1beda
     imagePrefab: {fileID: 1312944503820424187, guid: b5e9255cea7e42344a9fbdf27e925c86,
       type: 3}
+  - imageGuid: 3aa90e19-483a-4f8c-9533-fedd26f44a4c
+    imagePrefab: {fileID: 5922805941830337795, guid: dd7b99e9706935d41ae03913ac105ac8,
+      type: 3}
+  - imageGuid: 35f75348-936d-45e5-b943-f721ac566bd4
+    imagePrefab: {fileID: 1312944503820424187, guid: c8e5373a58bfac446aab88133e7bce99,
+      type: 3}
   m_ImageLibrary: {fileID: 11400000, guid: 8bec1328d44d1451185a6c1291ffc6e1, type: 2}
 --- !u!114 &1025949563
 MonoBehaviour:
@@ -1732,8 +1738,7 @@ MonoBehaviour:
   m_SerializedLibrary: {fileID: 11400000, guid: 8bec1328d44d1451185a6c1291ffc6e1,
     type: 2}
   m_MaxNumberOfMovingImages: 3
-  m_TrackedImagePrefab: {fileID: 1312944503820424187, guid: 63a7d056269810f4a9ff57edc1389750,
-    type: 3}
+  m_TrackedImagePrefab: {fileID: 0}
 --- !u!1 &1065835655
 GameObject:
   m_ObjectHideFlags: 0
@@ -3347,7 +3352,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2044083156
 MonoBehaviour:
   m_ObjectHideFlags: 0

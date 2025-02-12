@@ -167,3 +167,23 @@ MonoBehaviour:
     m_SpecifySize: 1
     m_Name: helicopter_image
     m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5732035840665259545
+      m_GuidHigh: 5497474742929470357
+    m_SerializedTextureGuid:
+      m_GuidLow: 14439881252378085643
+      m_GuidHigh: 6780351076005240442
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: test_image
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5036593855549887304
+      m_GuidHigh: 15306423055852979129
+    m_SerializedTextureGuid:
+      m_GuidLow: 2861104261555910487
+      m_GuidHigh: 10880028809006952171
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: test_image1
+    m_Texture: {fileID: 0}
