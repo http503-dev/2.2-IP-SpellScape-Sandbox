@@ -29,8 +29,8 @@ public class SceneChanger : MonoBehaviour
     /// </summary>
     public void HideMenuPanel()
     {
-        Time.timeScale = 1.0f;
         gameObject.SetActive(false);
+        Time.timeScale = 1.0f;
     }
 
     /// <summary>
@@ -38,8 +38,8 @@ public class SceneChanger : MonoBehaviour
     /// </summary>
     public void ShowMenuPanel()
     {
-        Time.timeScale = 0;
         gameObject.SetActive(true);
+        Time.timeScale = 0;
     }
 
     /// <summary>

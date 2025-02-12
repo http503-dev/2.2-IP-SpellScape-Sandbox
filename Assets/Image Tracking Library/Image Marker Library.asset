@@ -21,9 +21,9 @@ MonoBehaviour:
       m_GuidLow: 4835264922619245561
       m_GuidHigh: 6471106225184462739
     m_SerializedTextureGuid:
-      m_GuidLow: 933567297499042291
-      m_GuidHigh: 16472866310884635160
-    m_Size: {x: 0.1, y: 0.1}
+      m_GuidLow: 16732037150760662970
+      m_GuidHigh: 16929325505038424856
+    m_Size: {x: 0.05, y: 0.05}
     m_SpecifySize: 1
     m_Name: cat_image
     m_Texture: {fileID: 0}
@@ -31,9 +31,9 @@ MonoBehaviour:
       m_GuidLow: 5035082839482394177
       m_GuidHigh: 14561200099398599852
     m_SerializedTextureGuid:
-      m_GuidLow: 6279151207631946774
-      m_GuidHigh: 16620651418708266715
-    m_Size: {x: 0.1, y: 0.099823944}
+      m_GuidLow: 17623711761707074363
+      m_GuidHigh: 12100896357738804923
+    m_Size: {x: 0.05, y: 0.049911972}
     m_SpecifySize: 1
     m_Name: dog_image
     m_Texture: {fileID: 0}
@@ -41,9 +41,9 @@ MonoBehaviour:
       m_GuidLow: 5240796925494861482
       m_GuidHigh: 5770650045367192227
     m_SerializedTextureGuid:
-      m_GuidLow: 2163095051128784830
-      m_GuidHigh: 4407034797404249947
-    m_Size: {x: 0.1, y: 0.099823944}
+      m_GuidLow: 11854649246459507165
+      m_GuidHigh: 8274378490294158363
+    m_Size: {x: 0.05, y: 0.049911972}
     m_SpecifySize: 1
     m_Name: sun_image
     m_Texture: {fileID: 0}
@@ -51,9 +51,9 @@ MonoBehaviour:
       m_GuidLow: 4750659468126116267
       m_GuidHigh: 13611947216553002388
     m_SerializedTextureGuid:
-      m_GuidLow: 16583495353837358467
-      m_GuidHigh: 15520863087901617481
-    m_Size: {x: 0.1, y: 0.099823944}
+      m_GuidLow: 11557540260868578073
+      m_GuidHigh: 2065743836826087275
+    m_Size: {x: 0.05, y: 0.049911972}
     m_SpecifySize: 1
     m_Name: hat_image
     m_Texture: {fileID: 0}
@@ -61,19 +61,19 @@ MonoBehaviour:
       m_GuidLow: 5079473925372675673
       m_GuidHigh: 14725859802592973724
     m_SerializedTextureGuid:
-      m_GuidLow: 12543932186939565696
-      m_GuidHigh: 2869624091140326489
-    m_Size: {x: 0.1, y: 0.1}
+      m_GuidLow: 15795418341562767772
+      m_GuidHigh: 12197654729335186617
+    m_Size: {x: 0.05, y: 0.049911972}
     m_SpecifySize: 1
     m_Name: car_image
-    m_Texture: {fileID: 2800000, guid: 091f2680ffddae145984522fe8f3d227, type: 3}
+    m_Texture: {fileID: 2800000, guid: 3f89d99c994bdb34b924e3b259c646a9, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 5377966599133434366
       m_GuidHigh: 16112064402514808753
     m_SerializedTextureGuid:
-      m_GuidLow: 253372953198939144
-      m_GuidHigh: 17034024175486885162
-    m_Size: {x: 0.1, y: 0.1}
+      m_GuidLow: 9427399149024997276
+      m_GuidHigh: 3159131644018610778
+    m_Size: {x: 0.05, y: 0.05}
     m_SpecifySize: 1
     m_Name: apple_image
     m_Texture: {fileID: 0}
@@ -81,9 +81,9 @@ MonoBehaviour:
       m_GuidLow: 4656721031176505147
       m_GuidHigh: 6497467515977180838
     m_SerializedTextureGuid:
-      m_GuidLow: 14948776408828661872
-      m_GuidHigh: 5087716997885599161
-    m_Size: {x: 0.1, y: 0.1}
+      m_GuidLow: 11895213208542388285
+      m_GuidHigh: 9138051247486236712
+    m_Size: {x: 0.05, y: 0.05}
     m_SpecifySize: 1
     m_Name: chair_image
     m_Texture: {fileID: 0}
@@ -91,9 +91,9 @@ MonoBehaviour:
       m_GuidLow: 4802060673386007113
       m_GuidHigh: 4973527794077381248
     m_SerializedTextureGuid:
-      m_GuidLow: 5518040245780507411
-      m_GuidHigh: 13466347499419144952
-    m_Size: {x: 0.1, y: 0.1}
+      m_GuidLow: 9017357487266425446
+      m_GuidHigh: 6022560945005657160
+    m_Size: {x: 0.05, y: 0.05}
     m_SpecifySize: 1
     m_Name: tiger_image
     m_Texture: {fileID: 0}
@@ -101,9 +101,9 @@ MonoBehaviour:
       m_GuidLow: 4732655293726490947
       m_GuidHigh: 7480949348161364910
     m_SerializedTextureGuid:
-      m_GuidLow: 8495094860552744910
-      m_GuidHigh: 6100965636675690840
-    m_Size: {x: 0.1, y: 0.1}
+      m_GuidLow: 11710557652408739690
+      m_GuidHigh: 1379463663197102011
+    m_Size: {x: 0.05, y: 0.05}
     m_SpecifySize: 1
     m_Name: flower_image
     m_Texture: {fileID: 0}
@@ -111,9 +111,9 @@ MonoBehaviour:
       m_GuidLow: 5346868273670029819
       m_GuidHigh: 6135352369947241608
     m_SerializedTextureGuid:
-      m_GuidLow: 1748535069645473495
-      m_GuidHigh: 13193187595907619563
-    m_Size: {x: 0.1, y: 0.10017637}
+      m_GuidLow: 8323943004255246731
+      m_GuidHigh: 973321905517860538
+    m_Size: {x: 0.05, y: 0.050088186}
     m_SpecifySize: 1
     m_Name: rocket_image
     m_Texture: {fileID: 0}
@@ -121,9 +121,9 @@ MonoBehaviour:
       m_GuidLow: 4779595222198750860
       m_GuidHigh: 7280298828999583371
     m_SerializedTextureGuid:
-      m_GuidLow: 11791668127698719069
-      m_GuidHigh: 537635806322206072
-    m_Size: {x: 0.1, y: 0.1}
+      m_GuidLow: 15552281361223387986
+      m_GuidHigh: 5749737952654090251
+    m_Size: {x: 0.05, y: 0.05}
     m_SpecifySize: 1
     m_Name: rainbow_image
     m_Texture: {fileID: 0}
@@ -131,9 +131,9 @@ MonoBehaviour:
       m_GuidLow: 5231424237547235379
       m_GuidHigh: 17699402035560121761
     m_SerializedTextureGuid:
-      m_GuidLow: 15187433234669100600
-      m_GuidHigh: 10105617395412052648
-    m_Size: {x: 0.1, y: 0.1}
+      m_GuidLow: 257980493671365221
+      m_GuidHigh: 3484414859797192857
+    m_Size: {x: 0.05, y: 0.05}
     m_SpecifySize: 1
     m_Name: octopus_image
     m_Texture: {fileID: 0}
@@ -141,9 +141,9 @@ MonoBehaviour:
       m_GuidLow: 5376355786622104787
       m_GuidHigh: 17362974600717850025
     m_SerializedTextureGuid:
-      m_GuidLow: 9111978094591711912
-      m_GuidHigh: 11180436729220198138
-    m_Size: {x: 0.1, y: 0.1}
+      m_GuidLow: 14687455779932886889
+      m_GuidHigh: 14756131929917027931
+    m_Size: {x: 0.05, y: 0.05}
     m_SpecifySize: 1
     m_Name: strawberry_image
     m_Texture: {fileID: 0}
@@ -151,9 +151,9 @@ MonoBehaviour:
       m_GuidLow: 5476262278950416325
       m_GuidHigh: 5562083836613431198
     m_SerializedTextureGuid:
-      m_GuidLow: 7747406667316611210
-      m_GuidHigh: 11664648393904591515
-    m_Size: {x: 0.1, y: 0.1}
+      m_GuidLow: 12413293738849470442
+      m_GuidHigh: 5651793514863176731
+    m_Size: {x: 0.05, y: 0.05}
     m_SpecifySize: 1
     m_Name: butterfly_image
     m_Texture: {fileID: 0}
@@ -161,9 +161,9 @@ MonoBehaviour:
       m_GuidLow: 4641766148998474294
       m_GuidHigh: 15762283383657335184
     m_SerializedTextureGuid:
-      m_GuidLow: 7594244734691374213
-      m_GuidHigh: 9591790943970327819
-    m_Size: {x: 0.1, y: 0.1}
+      m_GuidLow: 18137345084363292004
+      m_GuidHigh: 7727425011750865161
+    m_Size: {x: 0.05, y: 0.05}
     m_SpecifySize: 1
     m_Name: helicopter_image
     m_Texture: {fileID: 0}
