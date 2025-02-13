@@ -23,7 +23,9 @@ public class WordManager : MonoBehaviour
     /// </summary>
     private ARRaycastManager raycastManager;
     private List<ARRaycastHit> raycastHits = new List<ARRaycastHit>();
-
+    private Vector3 fixedSpawnPosition;
+    private Quaternion fixedSpawnRotation;
+    private bool positionLocked = false; // Track if we already locked a position
 
     /// <summary>
     /// Current word game object
@@ -140,13 +142,38 @@ public class WordManager : MonoBehaviour
             yield break;
         }
 
-        // Try placing the word on a detected plane, retrying if needed
-        while (true)
+        // If position is already locked, skip raycast and spawn at the saved position
+        if (positionLocked)
+        {
+            if (currentWord != null)
+            {
+                Destroy(currentWord);
+            }
+
+            currentWord = Instantiate(selectedWord, fixedSpawnPosition, fixedSpawnRotation);
+
+            var validator = currentWord.GetComponent<ChallengeValidator>();
+            if (validator != null)
+            {
+                validator.wordManager = this;
+            }
+
+            Debug.Log($"Spawned '{currentWord.name}' at locked position {fixedSpawnPosition}");
+            yield break;
+        }
+
+        // If position is not locked, raycast to detect a plane and place the first word
+        while (!positionLocked)
         {
             Vector2 screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
             if (raycastManager.Raycast(screenCenter, raycastHits, TrackableType.PlaneWithinBounds))
             {
                 Pose hitPose = raycastHits[0].pose;
+
+                if (currentWord != null)
+                {
+                    Destroy(currentWord);
+                }
 
                 currentWord = Instantiate(selectedWord, hitPose.position, hitPose.rotation);
 
@@ -156,15 +183,21 @@ public class WordManager : MonoBehaviour
                     validator.wordManager = this;
                 }
 
-                Debug.Log($"Spawned '{currentWord.name}' on a detected plane at {hitPose.position}");
+                // Lock the position and rotation after the first successful placement
+                fixedSpawnPosition = hitPose.position;
+                fixedSpawnRotation = hitPose.rotation;
+                positionLocked = true;
 
+                Debug.Log($"Spawned '{currentWord.name}' on a detected plane at {hitPose.position} and position LOCKED.");
+
+                // Start the timer only when the **first word** is successfully spawned
                 if (challengeTimer != null && !challengeTimer.enabled)
                 {
                     challengeTimer.enabled = true;
                     Debug.Log("Timer started after the first word was spawned.");
                 }
 
-                yield break; // Successfully spawned; exit the loop
+                yield break;
             }
             else
             {
@@ -183,35 +216,48 @@ public class WordManager : MonoBehaviour
         }
 
         float randomValue = Random.value;
+        GameObject selectedWord = null;
 
         if (difficultyLevel == 1)
         {
             if (randomValue < 0.8f && mediumWords.Count > 0)
             {
-                return mediumWords[Random.Range(0, mediumWords.Count)];
+                selectedWord = mediumWords[Random.Range(0, mediumWords.Count)];
+                mediumWords.Remove(selectedWord);
             }
             else if (easyWords.Count > 0)
             {
-                return easyWords[Random.Range(0, easyWords.Count)];
+                selectedWord = easyWords[Random.Range(0, easyWords.Count)];
+                easyWords.Remove(selectedWord);
             }
         }
         else if (difficultyLevel == 2)
         {
             if (randomValue < 0.7f && hardWords.Count > 0)
             {
-                return hardWords[Random.Range(0, hardWords.Count)];
+                selectedWord = hardWords[Random.Range(0, hardWords.Count)];
+                hardWords.Remove(selectedWord);
             }
             else if (randomValue < 0.9f && mediumWords.Count > 0)
             {
-                return mediumWords[Random.Range(0, mediumWords.Count)];
+                selectedWord = mediumWords[Random.Range(0, mediumWords.Count)];
+                mediumWords.Remove(selectedWord);
             }
             else if (easyWords.Count > 0)
             {
-                return easyWords[Random.Range(0, easyWords.Count)];
+                selectedWord = easyWords[Random.Range(0, easyWords.Count)];
+                easyWords.Remove(selectedWord);
             }
         }
 
-        return currentList[Random.Range(0, currentList.Count)];
+        // If nothing was selected due to empty lists, default to current difficulty list
+        if (selectedWord == null && currentList.Count > 0)
+        {
+            selectedWord = currentList[Random.Range(0, currentList.Count)];
+            currentList.Remove(selectedWord);
+        }
+
+        return selectedWord;
     }
 
     /// <summary>
