@@ -13,13 +13,17 @@ using Firebase;
 using Firebase.Database;
 using Firebase.Extensions;
 using Firebase.Auth;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 
 public class WordManager : MonoBehaviour
 {
     /// <summary>
-    /// Spawn location for the word prefab
+    /// AR Components and spawning variables
     /// </summary>
-    public Transform spawnPoint;
+    private ARRaycastManager raycastManager;
+    private List<ARRaycastHit> raycastHits = new List<ARRaycastHit>();
+
 
     /// <summary>
     /// Current word game object
@@ -78,6 +82,8 @@ public class WordManager : MonoBehaviour
     /// </summary>
     public void Start()
     {
+        raycastManager = FindObjectOfType<ARRaycastManager>();
+
         // Ensure the Start Panel is active at the beginning
         startPanel.SetActive(true);
 
@@ -118,97 +124,94 @@ public class WordManager : MonoBehaviour
     {
         startPanel.SetActive(false); // Hide the Start Panel
         SetDifficultyLevel(0); // Start at Easy
-        SpawnRandomWord();
+        StartCoroutine(SpawnRandomWordWithRetry()); // Start spawning with retry
         UpdateProgressBar(); // Initialize UI
-
-        // Start the timer
-        if (challengeTimer != null)
-        {
-            challengeTimer.enabled = true;
-        }
 
         Debug.Log("Challenge started!");
     }
-
-    /// <summary>
-    /// Spawns a random word from the available word list at the current difficulty
-    /// </summary>
-    public void SpawnRandomWord()
+    IEnumerator SpawnRandomWordWithRetry()
     {
-        if (currentWord != null)
-        {
-            Destroy(currentWord); // Remove the previous word
-        }
+        GameObject selectedWord = SelectWordByDifficulty();
 
-        List<GameObject> currentWordList = GetWordListForDifficulty();
-
-        if (currentWordList.Count == 0)
+        if (selectedWord == null)
         {
             Debug.Log($"No words left at difficulty {difficultyLevel}, moving to next level.");
             IncreaseDifficulty();
-            return; // Prevent attempting to spawn a new word when the list is empty
+            yield break;
         }
 
-        GameObject selectedWord;
-        float randomValue = Random.value; // Random number between 0 and 1
-
-        if (difficultyLevel == 1) // Medium difficulty
+        // Try placing the word on a detected plane, retrying if needed
+        while (true)
         {
-            if (randomValue < 0.8f && mediumWords.Count > 0) // 80% chance for medium words
+            Vector2 screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
+            if (raycastManager.Raycast(screenCenter, raycastHits, TrackableType.PlaneWithinBounds))
             {
-                selectedWord = mediumWords[Random.Range(0, mediumWords.Count)];
-                mediumWords.Remove(selectedWord);
-            }
-            else if (easyWords.Count > 0) // 20% chance for easy words
-            {
-                selectedWord = easyWords[Random.Range(0, easyWords.Count)];
-                easyWords.Remove(selectedWord);
+                Pose hitPose = raycastHits[0].pose;
+
+                currentWord = Instantiate(selectedWord, hitPose.position, hitPose.rotation);
+
+                var validator = currentWord.GetComponent<ChallengeValidator>();
+                if (validator != null)
+                {
+                    validator.wordManager = this;
+                }
+
+                Debug.Log($"Spawned '{currentWord.name}' on a detected plane at {hitPose.position}");
+
+                if (challengeTimer != null && !challengeTimer.enabled)
+                {
+                    challengeTimer.enabled = true;
+                    Debug.Log("Timer started after the first word was spawned.");
+                }
+
+                yield break; // Successfully spawned; exit the loop
             }
             else
             {
-                Debug.LogWarning("No words available in lower difficulties.");
-                selectedWord = mediumWords[Random.Range(0, mediumWords.Count)];
+                Debug.Log("No plane detected. Retrying in 1 second...");
+                yield return new WaitForSeconds(1f);
             }
         }
-        else if (difficultyLevel == 2) // Hard difficulty
+    }
+    private GameObject SelectWordByDifficulty()
+    {
+        List<GameObject> currentList = GetWordListForDifficulty();
+
+        if (currentList.Count == 0)
         {
-            if (randomValue < 0.7f && hardWords.Count > 0) // 70% chance for hard words
-            {
-                selectedWord = hardWords[Random.Range(0, hardWords.Count)];
-                hardWords.Remove(selectedWord);
-            }
-            else if (randomValue < 0.9f && mediumWords.Count > 0) // 20% chance for medium words
-            {
-                selectedWord = mediumWords[Random.Range(0, mediumWords.Count)];
-                mediumWords.Remove(selectedWord);
-            }
-            else if (easyWords.Count > 0) // 10% chance for easy words
-            {
-                selectedWord = easyWords[Random.Range(0, easyWords.Count)];
-                easyWords.Remove(selectedWord);
-            }
-            else
-            {
-                Debug.LogWarning("No words available in lower difficulties.");
-                selectedWord = hardWords[Random.Range(0, hardWords.Count)];
-            }
-        }
-        else // Easy difficulty
-        {
-            selectedWord = easyWords[Random.Range(0, easyWords.Count)];
-            easyWords.Remove(selectedWord);
+            return null;
         }
 
-        // Instantiate the selected word prefab
-        currentWord = Instantiate(selectedWord, spawnPoint.position, Quaternion.identity);
+        float randomValue = Random.value;
 
-        var validator = currentWord.GetComponent<ChallengeValidator>();
-        if (validator != null)
+        if (difficultyLevel == 1)
         {
-            validator.wordManager = this;
+            if (randomValue < 0.8f && mediumWords.Count > 0)
+            {
+                return mediumWords[Random.Range(0, mediumWords.Count)];
+            }
+            else if (easyWords.Count > 0)
+            {
+                return easyWords[Random.Range(0, easyWords.Count)];
+            }
+        }
+        else if (difficultyLevel == 2)
+        {
+            if (randomValue < 0.7f && hardWords.Count > 0)
+            {
+                return hardWords[Random.Range(0, hardWords.Count)];
+            }
+            else if (randomValue < 0.9f && mediumWords.Count > 0)
+            {
+                return mediumWords[Random.Range(0, mediumWords.Count)];
+            }
+            else if (easyWords.Count > 0)
+            {
+                return easyWords[Random.Range(0, easyWords.Count)];
+            }
         }
 
-        Debug.Log($"New word spawned: {currentWord.name}");
+        return currentList[Random.Range(0, currentList.Count)];
     }
 
     /// <summary>
@@ -261,8 +264,21 @@ public class WordManager : MonoBehaviour
             }
         }
 
-        // Spawn the next word after a short delay
-        Invoke(nameof(SpawnRandomWord), 2f);
+        StartCoroutine(PlayEffectsAndSpawnNextWord());
+    }
+
+    private IEnumerator PlayEffectsAndSpawnNextWord()
+    {
+        // Adjust the delay time based on your effect duration (e.g., 2 seconds)
+        yield return new WaitForSeconds(3f);
+
+        // After effects finish, destroy the word and spawn the next one
+        if (currentWord != null)
+        {
+            Destroy(currentWord);
+        }
+
+        StartCoroutine(SpawnRandomWordWithRetry());
     }
 
     /// <summary>

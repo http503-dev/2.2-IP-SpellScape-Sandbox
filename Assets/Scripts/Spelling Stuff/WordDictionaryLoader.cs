@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class WordDictionaryLoader : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class WordDictionaryLoader : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject); // Persist dictionary across scenes
-            LoadDictionary();
+            StartCoroutine(LoadDictionary());
         }
         else
         {
@@ -38,31 +39,40 @@ public class WordDictionaryLoader : MonoBehaviour
     }
 
     /// <summary>
-    /// Loads the dictionary from the .txt file and adds it to HashSet
+    /// Coroutine to load the dictionary from StreamingAssets (works on Android and other platforms)
     /// </summary>
-    private void LoadDictionary()
+    private IEnumerator LoadDictionary()
     {
-        // Path to the dictionary file in StreamingAssets
         string filePath = Path.Combine(Application.streamingAssetsPath, "words_alpha.txt");
 
+#if UNITY_ANDROID
+        UnityWebRequest request = UnityWebRequest.Get(filePath);
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError($"Failed to load dictionary: {request.error}");
+        }
+        else
+        {
+            string dictionaryText = request.downloadHandler.text;
+            string[] lines = dictionaryText.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
+
+            wordSet = new HashSet<string>(lines);
+            Debug.Log($"Loaded {wordSet.Count} words into the dictionary (Android).");
+        }
+#else
         if (File.Exists(filePath))
         {
-            try
-            {
-                // Read all lines and populate the HashSet
-                string[] lines = File.ReadAllLines(filePath);
-                wordSet = new HashSet<string>(lines);
-                Debug.Log($"Loaded {wordSet.Count} words into the dictionary.");
-            }
-            catch (System.Exception ex)
-            {
-                Debug.LogError($"Error loading dictionary: {ex.Message}");
-            }
+            string[] lines = File.ReadAllLines(filePath);
+            wordSet = new HashSet<string>(lines);
+            Debug.Log($"Loaded {wordSet.Count} words into the dictionary.");
         }
         else
         {
             Debug.LogError($"Dictionary file not found at: {filePath}");
         }
+#endif
     }
 
     /// <summary>

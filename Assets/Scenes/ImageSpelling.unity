@@ -289,10 +289,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1440, y: 3120}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -862,9 +862,9 @@ RectTransform:
   - {fileID: 1158032683}
   m_Father: {fileID: 1122866792}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 900}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -740}
   m_SizeDelta: {x: 650, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &396257633
@@ -1587,7 +1587,7 @@ PrefabInstance:
     - target: {fileID: 2512387470528047737, guid: 48cb3fb68c91eb94999fd99957eb0cae,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2512387470528047738, guid: 48cb3fb68c91eb94999fd99957eb0cae,
         type: 3}
@@ -1674,53 +1674,8 @@ MonoBehaviour:
   - imageGuid: 2ba073f9-4fd4-431a-9357-f08fd3fccd59
     imagePrefab: {fileID: 1312944503820424187, guid: c8e5373a58bfac446aab88133e7bce99,
       type: 3}
-  - imageGuid: 5e036641-352a-45e0-ac44-098457c613ca
-    imagePrefab: {fileID: 1312944503820424187, guid: c6a7345ff821e46438e45a06d4dd5d30,
-      type: 3}
-  - imageGuid: 6c149eaa-0d09-48bb-a30a-345da4771550
-    imagePrefab: {fileID: 1312944503820424187, guid: 214b1631c7079af46a2fb571575958eb,
-      type: 3}
-  - imageGuid: be80d9ab-bb9d-41ed-9445-02d0df59e7bc
-    imagePrefab: {fileID: 1312944503820424187, guid: 3c923702481d660428c55df8279137db,
-      type: 3}
-  - imageGuid: 77b28659-ea9f-467d-9c13-c23178c35ccc
-    imagePrefab: {fileID: 1312944503820424187, guid: 63a7d056269810f4a9ff57edc1389750,
-      type: 3}
-  - imageGuid: d34391fe-6020-4aa2-b18f-1c6e358d99df
-    imagePrefab: {fileID: 1312944503820424187, guid: 15fee99d9e674004c859f18e5c9d78c8,
-      type: 3}
-  - imageGuid: 015dc73b-ff1b-409f-a6a6-75dd47a42b5a
+  - imageGuid: 6f76e66f-1529-45ad-b76f-98321ff84200
     imagePrefab: {fileID: 1312944503820424187, guid: af6c1b45f047c754c8820e9fe31d21e8,
-      type: 3}
-  - imageGuid: 730bca49-58bd-42a4-80b2-83862d850545
-    imagePrefab: {fileID: 1312944503820424187, guid: def71e1058b20ec4684b51665d2f1be7,
-      type: 3}
-  - imageGuid: 3af08143-c4ea-41ad-ae23-d9dfcbabd167
-    imagePrefab: {fileID: 1312944503820424187, guid: bc215d419e29dc04681278c315c2449e,
-      type: 3}
-  - imageGuid: b0e881fb-e45d-4a33-886c-8e5679262555
-    imagePrefab: {fileID: 1312944503820424187, guid: 8198d9d9b01c6b347b1fe34fec0c12fe,
-      type: 3}
-  - imageGuid: fd4f8e8c-8887-4254-8b66-365936d10865
-    imagePrefab: {fileID: 1312944503820424187, guid: cd979dd3bc99dd445a9f6d98e7143a99,
-      type: 3}
-  - imageGuid: 745f2833-c0a0-4899-a105-633a60e8a0f5
-    imagePrefab: {fileID: 1312944503820424187, guid: 5afc3a691aa043448b7c3d97ca193c15,
-      type: 3}
-  - imageGuid: 4fb9f4d3-a71a-4a9c-a9d5-ea0768adf5f0
-    imagePrefab: {fileID: 1312944503820424187, guid: 0076bffef4372f4459b62bdec30231ce,
-      type: 3}
-  - imageGuid: 39b5efc5-9787-4bff-9e0f-49bcc77d304d
-    imagePrefab: {fileID: 1312944503820424187, guid: ae7195a108569844daaeb1e1e6589ecf,
-      type: 3}
-  - imageGuid: 297caa36-ddb8-406a-9009-f0ab39e1beda
-    imagePrefab: {fileID: 1312944503820424187, guid: b5e9255cea7e42344a9fbdf27e925c86,
-      type: 3}
-  - imageGuid: 3aa90e19-483a-4f8c-9533-fedd26f44a4c
-    imagePrefab: {fileID: 5922805941830337795, guid: dd7b99e9706935d41ae03913ac105ac8,
-      type: 3}
-  - imageGuid: 35f75348-936d-45e5-b943-f721ac566bd4
-    imagePrefab: {fileID: 1312944503820424187, guid: c8e5373a58bfac446aab88133e7bce99,
       type: 3}
   m_ImageLibrary: {fileID: 11400000, guid: 8bec1328d44d1451185a6c1291ffc6e1, type: 2}
 --- !u!114 &1025949563
@@ -1737,7 +1692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SerializedLibrary: {fileID: 11400000, guid: 8bec1328d44d1451185a6c1291ffc6e1,
     type: 2}
-  m_MaxNumberOfMovingImages: 3
+  m_MaxNumberOfMovingImages: 1
   m_TrackedImagePrefab: {fileID: 0}
 --- !u!1 &1065835655
 GameObject:
@@ -3352,7 +3307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2044083156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3365,7 +3320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dad7a6c85c15304ebca9fa7eba784e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordsNeededToUnlock: 3
+  wordsNeededToUnlock: 0
   progressBar: {fileID: 915371440}
   progressText: {fileID: 628354299}
   warningText: {fileID: 1212937637}
