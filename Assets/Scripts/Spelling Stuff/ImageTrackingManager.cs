@@ -12,6 +12,10 @@ using Firebase;
 using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Extensions;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.InputSystem;
 
 public class ImageTrackingManager : MonoBehaviour
 {
@@ -49,6 +53,8 @@ public class ImageTrackingManager : MonoBehaviour
     private FirebaseAuth auth;
     private string userId;
 
+    private WordValidator activeValidator;
+
     /// <summary>
     /// Initializes the UI Progress Bar at Start and Firebase
     /// </summary>
@@ -79,6 +85,12 @@ public class ImageTrackingManager : MonoBehaviour
                 Debug.LogError("Could not connect to Firebase: " + task.Result);
             }
         });
+    }
+
+    public void RegisterActiveValidator(WordValidator validator)
+    {
+        activeValidator = validator;
+        Debug.Log($"Active Validator Set: {validator.correctWord}");
     }
 
     /// <summary>

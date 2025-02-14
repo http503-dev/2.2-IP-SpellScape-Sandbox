@@ -5,16 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: 7eab3a3bb08c9e44c9d8d1d4e93fe2d5
   - enabled: 1
     path: Assets/Scenes/ImageSpelling.unity
     guid: f318e05af088428499be3792dd63b217
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Challenge.unity
     guid: 35f1299a06e3c53488a6096a0e0d069c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Sandbox.unity
     guid: 742f5253b560b014ebdc7ff6e9336188
   m_configObjects:
