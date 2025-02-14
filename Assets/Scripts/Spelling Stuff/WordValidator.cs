@@ -9,7 +9,6 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class WordValidator : MonoBehaviour
@@ -20,10 +19,9 @@ public class WordValidator : MonoBehaviour
     public string correctWord;
 
     /// <summary>
-    /// Array of transforms acting as the snap points for the letters
+    /// Array of XR socket interactors representing the snap points for the letters
     /// </summary>
-    public Transform[] snapPoints;
-    private GameObject[] placedBlocks;
+    public XRSocketInteractor[] snapPoints; // Array of sockets to validate
 
     /// <summary>
     /// Flag to check whether word has been validated
@@ -59,12 +57,6 @@ public class WordValidator : MonoBehaviour
             imageTrackingManager = FindObjectOfType<ImageTrackingManager>();
         }
 
-        if (imageTrackingManager != null)
-        {
-            imageTrackingManager.RegisterActiveValidator(this);
-            Debug.Log($"Registered {correctWord} with ImageTrackingManager.");
-        }
-
         // If difficulty is not unlocked, disable the prefab
         if (imageTrackingManager != null && !imageTrackingManager.CanSpawnPrefab(difficultyLevel))
         {
@@ -73,55 +65,65 @@ public class WordValidator : MonoBehaviour
             imageTrackingManager.RegisterLockedWord(this); // Register the locked word!
         }
 
-        placedBlocks = new GameObject[snapPoints.Length];
+        // Subscribe to socket events for all snap points
+        foreach (var socket in snapPoints)
+        {
+            socket.selectEntered.AddListener(OnBlockPlaced);
+            socket.selectExited.AddListener(OnBlockRemoved);
+        }
     }
 
-    public bool PlaceBlock(GameObject block, int snapIndex)
+    /// <summary>
+    /// Unsubscribes from the select and deselect events to avoid memory leaks
+    /// </summary>
+    private void OnDestroy()
     {
-        if (snapIndex < 0 || snapIndex >= placedBlocks.Length)
+        // Unsubscribe from socket events to avoid memory leaks
+        foreach (var socket in snapPoints)
         {
-            Debug.LogWarning($"Invalid snap index {snapIndex} for block {block.name}");
-            return false;
+            socket.selectEntered.RemoveListener(OnBlockPlaced);
+            socket.selectExited.RemoveListener(OnBlockRemoved);
         }
-
-        if (placedBlocks[snapIndex] != null)
-        {
-            Debug.LogWarning($"Snap point {snapIndex} already occupied.");
-            return false;
-        }
-
-        block.transform.position = snapPoints[snapIndex].position;
-        block.transform.rotation = snapPoints[snapIndex].rotation;
-        block.transform.SetParent(snapPoints[snapIndex]);
-        placedBlocks[snapIndex] = block;
-
-        Debug.Log($"Placed {block.name} at snap point {snapIndex}.");
-
-        CheckValidation();
-        return true;
     }
 
-    public void RemoveBlock(int snapIndex)
+    /// <summary>
+    /// Function for when a block is placed in a socket
+    /// </summary>
+    /// <param name="args"> Event arguments containing details about the interaction </param>
+    private void OnBlockPlaced(SelectEnterEventArgs args)
     {
-        if (snapIndex < 0 || snapIndex >= placedBlocks.Length || placedBlocks[snapIndex] == null)
+        // Check if all snap points are occupied and validate the word
+        if (!isValidated && snapPoints.All(sp => sp.hasSelection))
         {
-            return;
+            ValidateWord();
+            isValidated = true;
         }
+    }
 
-        placedBlocks[snapIndex].transform.SetParent(null);
-        placedBlocks[snapIndex] = null;
+    /// <summary>
+    /// Function for when a block is removed from a socket
+    /// </summary>
+    /// <param name="args"> Event arguments containing details about the interaction </param>
+    private void OnBlockRemoved(SelectExitEventArgs args)
+    {
+        // Reset the validation state when a block is removed
         isValidated = false;
     }
 
-
-    private void CheckValidation()
+    /// <summary>
+    /// Function to validate the word formed when all letter blocks are placed in all sockets
+    /// </summary>
+    public void ValidateWord()
     {
-        if (placedBlocks.Any(b => b == null)) return;
+        // Collect the names of selected interactables from the snap points
+        string formedWord = string.Concat(snapPoints.Select(sp => sp.GetOldestInteractableSelected()?.transform.name ?? ""));
 
-        string formedWord = string.Concat(placedBlocks.Select(b => b.name[0])); // Assuming block name is a letter
         if (formedWord.Equals(correctWord, System.StringComparison.OrdinalIgnoreCase))
         {
+            Debug.Log("Correct Word!");
             TriggerSuccessEffects();
+
+            // Notify the manager to update progress
             if (imageTrackingManager != null)
             {
                 imageTrackingManager.OnWordCompleted(difficultyLevel);
@@ -129,6 +131,7 @@ public class WordValidator : MonoBehaviour
         }
         else
         {
+            Debug.Log("Incorrect Word! Try Again.");
             TriggerIncorrectEffects();
         }
     }

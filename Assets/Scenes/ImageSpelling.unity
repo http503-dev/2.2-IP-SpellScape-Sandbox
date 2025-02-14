@@ -1589,11 +1589,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2512387470528047737, guid: 48cb3fb68c91eb94999fd99957eb0cae,
-        type: 3}
-      propertyPath: m_PlanePrefab
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2512387470528047738, guid: 48cb3fb68c91eb94999fd99957eb0cae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1677,31 +1672,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PrefabsList:
   - imageGuid: 7eea7472-1257-42d1-a485-32a4148b724c
-    imagePrefab: {fileID: 1312944503820424187, guid: 9ac5640b783cdfc4bbdbaf2d1c0385d2,
+    imagePrefab: {fileID: 628394459502186076, guid: 2ec7f330628604d92aa8d1c6b56321d6,
       type: 3}
   - imageGuid: 36ba7d46-1ec6-4880-924b-c4d106afd36e
-    imagePrefab: {fileID: 1312944503820424187, guid: c6a7345ff821e46438e45a06d4dd5d30,
+    imagePrefab: {fileID: 628394459502186076, guid: 2ec7f330628604d92aa8d1c6b56321d6,
       type: 3}
   - imageGuid: 19e87608-fde0-430f-a258-972d721ab7a4
-    imagePrefab: {fileID: 1312944503820424187, guid: 214b1631c7079af46a2fb571575958eb,
+    imagePrefab: {fileID: 628394459502186076, guid: 2ec7f330628604d92aa8d1c6b56321d6,
       type: 3}
   - imageGuid: 3bd79382-106e-4484-8ddf-8b088e402af4
-    imagePrefab: {fileID: 1312944503820424187, guid: af6c1b45f047c754c8820e9fe31d21e8,
+    imagePrefab: {fileID: 628394459502186076, guid: 2ec7f330628604d92aa8d1c6b56321d6,
       type: 3}
   - imageGuid: a9850a06-e6ac-48ef-b890-186cc3ab9bc0
-    imagePrefab: {fileID: 1312944503820424187, guid: bc215d419e29dc04681278c315c2449e,
+    imagePrefab: {fileID: 628394459502186076, guid: 2ec7f330628604d92aa8d1c6b56321d6,
       type: 3}
   - imageGuid: f2dff6f5-df8c-4f36-91c3-aad94f587ad4
-    imagePrefab: {fileID: 1312944503820424187, guid: 8198d9d9b01c6b347b1fe34fec0c12fe,
+    imagePrefab: {fileID: 628394459502186076, guid: 2ec7f330628604d92aa8d1c6b56321d6,
       type: 3}
   - imageGuid: 3fc99e46-8aa0-43c3-ba1c-b56f4844c73b
-    imagePrefab: {fileID: 1312944503820424187, guid: ae7195a108569844daaeb1e1e6589ecf,
+    imagePrefab: {fileID: 628394459502186076, guid: 2ec7f330628604d92aa8d1c6b56321d6,
       type: 3}
   - imageGuid: 81e715ba-2a65-495e-b68c-3b3f3b31c035
-    imagePrefab: {fileID: 1312944503820424187, guid: 5afc3a691aa043448b7c3d97ca193c15,
+    imagePrefab: {fileID: 628394459502186076, guid: 2ec7f330628604d92aa8d1c6b56321d6,
       type: 3}
   - imageGuid: e01d9d41-ed57-4507-96d3-e402136f8576
-    imagePrefab: {fileID: 1312944503820424187, guid: 0076bffef4372f4459b62bdec30231ce,
+    imagePrefab: {fileID: 628394459502186076, guid: 2ec7f330628604d92aa8d1c6b56321d6,
       type: 3}
   m_ImageLibrary: {fileID: 11400000, guid: 8bec1328d44d1451185a6c1291ffc6e1, type: 2}
 --- !u!114 &1025949563
@@ -1719,8 +1714,7 @@ MonoBehaviour:
   m_SerializedLibrary: {fileID: 11400000, guid: 8bec1328d44d1451185a6c1291ffc6e1,
     type: 2}
   m_MaxNumberOfMovingImages: 1
-  m_TrackedImagePrefab: {fileID: 1312944503820424187, guid: 9ac5640b783cdfc4bbdbaf2d1c0385d2,
-    type: 3}
+  m_TrackedImagePrefab: {fileID: 0}
 --- !u!1 &1065835655
 GameObject:
   m_ObjectHideFlags: 0
