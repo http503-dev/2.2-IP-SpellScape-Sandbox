@@ -340,9 +340,11 @@ public class WordManager : MonoBehaviour
         {
             SetDifficultyLevel(2);
         }
-        else
+        else if (difficultyLevel == 2)
         {
             Debug.Log("All difficulty levels completed!");
+            progressBar.value = 1f;
+            progressText.text = "All difficulties completed!";
         }
 
         UpdateProgressBar(); // Reset progress bar on difficulty increase
@@ -401,6 +403,14 @@ public class WordManager : MonoBehaviour
     /// </summary>
     public void UpdateProgressBar()
     {
+        if (difficultyLevel == 2 && wordsCompleted >= wordsToLevelUp)
+        {
+            // If we are at the final level and "completed," set bar full and message
+            progressBar.value = 1f;
+            progressText.text = "All difficulties completed!";
+            return;
+        }
+
         float progress = (float)wordsCompleted / wordsToLevelUp;
         if (progressBar != null)
         {

@@ -8,10 +8,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
-using Firebase;
-using Firebase.Auth;
-using Firebase.Database;
-using Firebase.Extensions;
 
 public class ImageTrackingManager : MonoBehaviour
 {
@@ -28,7 +24,7 @@ public class ImageTrackingManager : MonoBehaviour
     /// <summary>
     /// Number of words needed to unlock the next difficulty
     /// </summary>
-    public int wordsNeededToUnlock = 3;
+    public int wordsNeededToUnlock = 2;
 
     /// <summary>
     /// List of words that are locked due to higher difficulty requirements
@@ -43,42 +39,11 @@ public class ImageTrackingManager : MonoBehaviour
     public TextMeshProUGUI warningText;
 
     /// <summary>
-    /// Firebase Database and Auth References
-    /// </summary>
-    private DatabaseReference database;
-    private FirebaseAuth auth;
-    private string userId;
-
-    /// <summary>
     /// Initializes the UI Progress Bar at Start and Firebase
     /// </summary>
     private void Start()
     {
         UpdateProgressBar(); // Initialize UI on start
-
-        // Initialize Firebase
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
-        {
-            if (task.Result == DependencyStatus.Available)
-            {
-                auth = FirebaseAuth.DefaultInstance;
-                database = FirebaseDatabase.DefaultInstance.RootReference;
-
-                if (auth.CurrentUser != null)
-                {
-                    userId = auth.CurrentUser.UserId;
-                    Debug.Log("Firebase Connected - User ID: " + userId);
-                }
-                else
-                {
-                    Debug.LogError("No user logged in!");
-                }
-            }
-            else
-            {
-                Debug.LogError("Could not connect to Firebase: " + task.Result);
-            }
-        });
     }
 
     /// <summary>
@@ -89,7 +54,7 @@ public class ImageTrackingManager : MonoBehaviour
         if (wordDifficulty == difficultyLevel)
         {
             wordsCompleted++;
-            Debug.Log($"Words Completed: {wordsCompleted}/3 at Difficulty Level {difficultyLevel}");
+            Debug.Log($"Words Completed: {wordsCompleted}/{wordsNeededToUnlock} at Difficulty Level {difficultyLevel}");
 
             UpdateProgressBar();
 
@@ -128,9 +93,6 @@ public class ImageTrackingManager : MonoBehaviour
 
             Debug.Log($"Unlocked difficulty: {difficultyLevel}");
 
-            // Push updated difficulty level to Firebase
-            UpdateDifficultyInFirebase();
-
             // Reactivate locked words that match the new difficulty
             foreach (var word in new List<WordValidator>(lockedWords))
             {
@@ -142,6 +104,12 @@ public class ImageTrackingManager : MonoBehaviour
             }
 
             UpdateProgressBar(); // Reset progress bar when difficulty increases
+        }
+        if (difficultyLevel == 2)
+        {
+            Debug.Log("All difficulties unlocked!");
+            progressBar.value = 1f; // Keep the progress bar full
+            progressText.text = "All difficulties unlocked!";
         }
         else
         {
@@ -176,6 +144,14 @@ public class ImageTrackingManager : MonoBehaviour
     /// </summary>
     private void UpdateProgressBar()
     {
+        if (difficultyLevel == 2)
+        {
+            // If max difficulty, show full progress bar and final message
+            progressBar.value = 1f;
+            progressText.text = "All difficulties unlocked!";
+            return;
+        }
+
         float progress = (float)wordsCompleted / wordsNeededToUnlock;
 
         if (progressBar != null)
@@ -187,32 +163,6 @@ public class ImageTrackingManager : MonoBehaviour
         {
             progressText.text = $"{wordsCompleted}/{wordsNeededToUnlock} words completed\nto unlock next difficulty";
         }
-    }
-
-    /// <summary>
-    /// Pushes the current difficulty level to Firebase
-    /// </summary>
-    private void UpdateDifficultyInFirebase()
-    {
-        if (string.IsNullOrEmpty(userId))
-        {
-            Debug.LogError("No valid user ID found. Cannot update difficulty.");
-            return;
-        }
-
-        string difficultyName = GetDifficultyName(difficultyLevel);
-
-        database.Child("users").Child(userId).Child("imageTracking").Child("imageDifficultyLevel").SetValueAsync(difficultyName).ContinueWithOnMainThread(task =>
-        {
-            if (task.IsCompleted)
-            {
-                Debug.Log($"Image Difficulty Level updated in Firebase: {difficultyName}");
-            }
-            else
-            {
-                Debug.LogError($"Failed to update difficulty level: {task.Exception}");
-            }
-        });
     }
 
     /// <summary>
