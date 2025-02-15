@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
 public class SceneChanger : MonoBehaviour
 {
@@ -48,6 +49,7 @@ public class SceneChanger : MonoBehaviour
     public void ToImage()
     {
         Time.timeScale = 1.0f;
+        ObjectSpawner.DestroyAllSpawnedBlocks(); // Clean up spawned sandbox blocks
         Debug.Log("Deinitialize/Initialize");
         LoaderUtility.Deinitialize();
         LoaderUtility.Initialize();
@@ -61,6 +63,7 @@ public class SceneChanger : MonoBehaviour
     public void ToChallenge()
     {
         Time.timeScale = 1.0f;
+        ObjectSpawner.DestroyAllSpawnedBlocks(); // Clean up spawned sandbox blocks
         Debug.Log("Deinitialize/Initialize");
         LoaderUtility.Deinitialize();
         LoaderUtility.Initialize();

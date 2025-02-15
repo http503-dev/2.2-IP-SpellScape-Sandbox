@@ -9,6 +9,8 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
     /// </summary>
     public class ObjectSpawner : MonoBehaviour
     {
+        public static List<GameObject> spawnedBlocks = new List<GameObject>();
+
         [SerializeField]
         [Tooltip("The camera that objects will face when spawned. If not set, defaults to the main camera.")]
         Camera m_CameraToFace;
@@ -192,6 +194,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
         /// <seealso cref="objectSpawned"/>
         public bool TrySpawnObject(Vector3 spawnPoint, Vector3 spawnNormal)
         {
+
             if (m_OnlySpawnInView)
             {
                 var inViewMin = m_ViewportPeriphery;
@@ -217,6 +220,8 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
             BurstMathUtility.ProjectOnPlane(forward, spawnNormal, out var projectedForward);
             newObject.transform.rotation = Quaternion.LookRotation(projectedForward, spawnNormal);
 
+            spawnedBlocks.Add(newObject); // Track it for cleanup later
+
             if (m_ApplyRandomAngleAtSpawn)
             {
                 var randomRotation = Random.Range(-m_SpawnAngleRange, m_SpawnAngleRange);
@@ -232,6 +237,17 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
 
             objectSpawned?.Invoke(newObject);
             return true;
+        }
+        public static void DestroyAllSpawnedBlocks()
+        {
+            foreach (var block in spawnedBlocks)
+            {
+                if (block != null)
+                {
+                    Destroy(block);
+                }
+            }
+            spawnedBlocks.Clear();
         }
     }
 }
