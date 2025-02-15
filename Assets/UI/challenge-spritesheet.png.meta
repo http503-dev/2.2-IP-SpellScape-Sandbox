@@ -1,0 +1,734 @@
+fileFormatVersion: 2
+guid: 94f9d541fbff8134d95355aa4b8cda09
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: challenge-spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1700
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e6c18a0e8e2b1c49874cfbfd5244cf5
+      internalID: -699195454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 1700
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fe217d15f702634eb1da527ce8dfa50
+      internalID: -2010505689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 1700
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5e0fc9605284774bac33fa577720c8b
+      internalID: -1746904449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 1700
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb9705fb1a7d9fa42b3fea61d8049c1c
+      internalID: -657349800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1700
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d48bd2c51084fbe49ae1205709facdc9
+      internalID: 1308588413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1360
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e47c8ec3a0de92347b06961eff008831
+      internalID: 210328128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 1360
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d78f124b5a90f594fb0e06826f287ea5
+      internalID: -1816696287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 1360
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: daea034f3de1eb4478b965875fe9be65
+      internalID: -1032114652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 1360
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50c074de61cf6cc44b4d6c066b4892fd
+      internalID: 287291749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1360
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c8a424a0843cea4a9f2f4889ec0cc1d
+      internalID: 249542799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1020
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1ef45dc02c32a648afb5bf3d164bc4f
+      internalID: -854062462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 1020
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c93ef264d954a16458a2159ebbae0a8d
+      internalID: 12484067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 1020
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f228e1ba8c3b44b4a841c5fa8c01e3bb
+      internalID: -671803223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 1020
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0106587f3c807db45bc9490bf1d88c37
+      internalID: 476038341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1020
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d7eb380ac34fd044af05c2c0a9aa3ff
+      internalID: 1804266399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 680
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bb214401f78fd64d889ad60ad04560d
+      internalID: 907908194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 680
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ba94218cfbaed242a3de6bff783f02e
+      internalID: -446054829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 680
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 904fa4ad6d422354cad2eedade7d6a44
+      internalID: -1650435710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 680
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91868c3a3b6d12542be3365519b182e5
+      internalID: -2119958963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 680
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 638287fe40ba27e4d8475e3153dbbc28
+      internalID: 1396630086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 340
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6684b8c2ba2984e4b92fc158397bddb0
+      internalID: 1210287489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 340
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 240ef527c76b13c4e89d080eb7327448
+      internalID: 860391579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 340
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17e107b199a4093459a601611f5477b9
+      internalID: 1243533244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 340
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14117a0b0aec6274d9a6d61ee410e95f
+      internalID: 657044170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 340
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba8fa1a930b429244882d6609a6d1f6c
+      internalID: 706086385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d298ddbf8f5a4cc4f9d2b4bf22570d3d
+      internalID: -1277649960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: challenge-spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 192
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f48ccdd3c5caf04295b594971ef5a2a
+      internalID: -1312416360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      challenge-spritesheet_0: -699195454
+      challenge-spritesheet_1: -2010505689
+      challenge-spritesheet_10: -854062462
+      challenge-spritesheet_11: 12484067
+      challenge-spritesheet_12: -671803223
+      challenge-spritesheet_13: 476038341
+      challenge-spritesheet_14: 1804266399
+      challenge-spritesheet_15: 907908194
+      challenge-spritesheet_16: -446054829
+      challenge-spritesheet_17: -1650435710
+      challenge-spritesheet_18: -2119958963
+      challenge-spritesheet_19: 1396630086
+      challenge-spritesheet_2: -1746904449
+      challenge-spritesheet_20: 1210287489
+      challenge-spritesheet_21: 860391579
+      challenge-spritesheet_22: 1243533244
+      challenge-spritesheet_23: 657044170
+      challenge-spritesheet_24: 706086385
+      challenge-spritesheet_25: -1277649960
+      challenge-spritesheet_26: -1312416360
+      challenge-spritesheet_3: -657349800
+      challenge-spritesheet_4: 1308588413
+      challenge-spritesheet_5: 210328128
+      challenge-spritesheet_6: -1816696287
+      challenge-spritesheet_7: -1032114652
+      challenge-spritesheet_8: 287291749
+      challenge-spritesheet_9: 249542799
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

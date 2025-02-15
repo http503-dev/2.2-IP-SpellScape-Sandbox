@@ -1,0 +1,756 @@
+fileFormatVersion: 2
+guid: d8834979bdb50854c94647ac10f96668
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1700
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37277c63c9fcbc04ea01357e889677f7
+      internalID: 345148133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 1700
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1bf6650449a1f242a2a74363ab8bb76
+      internalID: -471150244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 1700
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7f6bc631f1b3b8478821f1f3adedbeb
+      internalID: 1618223774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 1700
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c508efb918b0044cb118f45860fe61f
+      internalID: -838049188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 1700
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7ad770d7d9cc684984420ba9616ff65
+      internalID: -230245449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1360
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6223c9f84f57eb045a6f86800dc7c095
+      internalID: -1907406117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 1360
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4141ea79ae07c845b6fefe928b84a08
+      internalID: -1434721492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 1360
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b02f15874e0209147b1ba000d40ddb00
+      internalID: -202641227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 1360
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7a954eefdbf58b4a8e5305b9d10cbc3
+      internalID: -1497198598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 1360
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 940204906f6a83f4aa4e3979784ad5c7
+      internalID: -1865772434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1020
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a23e8f27c725f24498fb16794e5ee4e
+      internalID: -1068555465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 1020
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dde2ff6a9058624aa272da0d47f931a
+      internalID: -364124948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 1020
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4738e997521f2b34d9bbbf57ee9d72eb
+      internalID: -2051836290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 1020
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22d50f457bdf4c848ac7f77161a705e1
+      internalID: 1509063195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 1020
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38bc0255fa2938745a12bebd58a01e77
+      internalID: 1377918188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 680
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f0a4b1b0bec7374c84b852aa54ed08c
+      internalID: 1975362546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 680
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbb65e008f6d7d6479fb9ec3d2357f39
+      internalID: 1219125535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 680
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5efec1dbefc591343b1ad538f2a09bbe
+      internalID: -824812337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 680
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c67dc10932209f45865db4e910b81de
+      internalID: 2062786927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 680
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a599007aa61445449a98f65e8e1dfb80
+      internalID: -663822827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 340
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e91e193c3fbdcc438614b7cdc34c0b9
+      internalID: 2070825444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 340
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebdf484aef34bc04ea78381a777325ce
+      internalID: -1966803543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 340
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e10d4619e4baf1a428530bb65c77496d
+      internalID: -1145952665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 340
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74111124202a46742ad3956e746db08f
+      internalID: 1668840444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 340
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43e4068414d655f4c82dd1f9f99c1a88
+      internalID: -131988010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ab3a94436bb96c4fa0b52387fa40788
+      internalID: 1062701141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 0
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 767ebba869f3c1f49b2bd10b5ed33934
+      internalID: -951497643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: imagetracking-spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 0
+        width: 208
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43164147884492d4db8c8943dc901a5c
+      internalID: -341410624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      imagetracking-spritesheet_0: 345148133
+      imagetracking-spritesheet_1: -471150244
+      imagetracking-spritesheet_10: -1068555465
+      imagetracking-spritesheet_11: -364124948
+      imagetracking-spritesheet_12: -2051836290
+      imagetracking-spritesheet_13: 1509063195
+      imagetracking-spritesheet_14: 1377918188
+      imagetracking-spritesheet_15: 1975362546
+      imagetracking-spritesheet_16: 1219125535
+      imagetracking-spritesheet_17: -824812337
+      imagetracking-spritesheet_18: 2062786927
+      imagetracking-spritesheet_19: -663822827
+      imagetracking-spritesheet_2: 1618223774
+      imagetracking-spritesheet_20: 2070825444
+      imagetracking-spritesheet_21: -1966803543
+      imagetracking-spritesheet_22: -1145952665
+      imagetracking-spritesheet_23: 1668840444
+      imagetracking-spritesheet_24: -131988010
+      imagetracking-spritesheet_25: 1062701141
+      imagetracking-spritesheet_26: -951497643
+      imagetracking-spritesheet_27: -341410624
+      imagetracking-spritesheet_3: -838049188
+      imagetracking-spritesheet_4: -230245449
+      imagetracking-spritesheet_5: -1907406117
+      imagetracking-spritesheet_6: -1434721492
+      imagetracking-spritesheet_7: -202641227
+      imagetracking-spritesheet_8: -1497198598
+      imagetracking-spritesheet_9: -1865772434
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
